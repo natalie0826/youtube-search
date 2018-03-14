@@ -13,7 +13,7 @@ export const Selection = (props) => {
     return (
         <div className="selection">
             <label>{props.title}</label>
-            <select onChange={props.onItemChanged}>
+            <select value="" onChange={props.onItemChanged}>
                 {props.items.map(item => (
                     <option value={item} key={item}>{item}</option>
                 ))}

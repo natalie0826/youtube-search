@@ -40,11 +40,12 @@ export default class VideoApp extends React.Component {
         }
     }
 
-    fetchVideosAgain(videoType = this.props.videoTypes[0]) {
-        this.props.fetchVideos(this.state.searchQuery, videoType);
+    fetchVideosAgain(searchQuery, videoType = this.props.videoTypes[0]) {
+        this.props.fetchVideos(searchQuery, videoType);
     }
 
     videoTypeChanged = (event) => {
+        console.log('event', event.target.value);
         this.setState({videoType: event.target.value});
     }
 

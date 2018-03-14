@@ -120,9 +120,5 @@ describe('VideoApp stateful component', () => {
         expect(component.length).toBe(1);
     });
 
-    it('Loading Component is shown if isFetching: true', () => {
-        component.setProps(videoProps);
-        console.log(component.find('section').children());
-        expect(component.find('Loading').length).toBe(1);
-    });
+
 });

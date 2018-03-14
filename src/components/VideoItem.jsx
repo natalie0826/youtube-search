@@ -20,7 +20,10 @@ export const VideoItem = (props) => {
     return (
         <li className="video-item" onClick={props.watchVideo}>
             <div className="thumbnail">
-                <img src={props.video.snippet.thumbnails.high.url} alt={videoInfo.title} />
+                <div className="video-preview">
+                    <img src={props.video.snippet.thumbnails.high.url} alt={videoInfo.title} />
+                    <a href="#" className="play-button"></a>
+                </div>
                 <div className="video-description">
                 <h2>{videoInfo.title}</h2>
                 <section className="video-details">
