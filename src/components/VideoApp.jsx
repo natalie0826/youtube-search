@@ -14,6 +14,7 @@ export default class VideoApp extends React.Component {
         video: PropTypes.object,
         videos: PropTypes.array,
         videoTypes: PropTypes.array.isRequired,
+        pageInfo: PropTypes.object.isRequired,
         fetchVideos: PropTypes.func.isRequired,
         setActiveVideo: PropTypes.func.isRequired
     };
@@ -40,12 +41,13 @@ export default class VideoApp extends React.Component {
         }
     }
 
-    fetchVideosAgain(searchQuery, videoType = this.props.videoTypes[0]) {
+    fetchVideosAgain(
+        searchQuery = this.state.searchQuery,
+        videoType = this.props.videoTypes[0]) {
         this.props.fetchVideos(searchQuery, videoType);
     }
 
     videoTypeChanged = (event) => {
-        console.log('event', event.target.value);
         this.setState({videoType: event.target.value});
     }
 
@@ -63,12 +65,13 @@ export default class VideoApp extends React.Component {
                 <Navigation searchUpdate={this.searchUpdate}
                             videoTypes={this.props.videoTypes}
                             videoTypeChanged={this.videoTypeChanged}
-                            updateSettings={this.updateSettings} />
+                            updateSettings={this.updateSettings}
+                            isFetching={this.props.isFetching} />
                 {this.props.isFetching
                     ?   <Loading loading={this.props.isFetching}/>
                     :   <div className="videos">
                             <VideoWatch video={this.props.video} />
-                            <VideoList videos={this.props.videos} store={this.props.store} watchVideo={(video) => this.watchVideo(video)} />
+                            <VideoList videos={this.props.videos} watchVideo={(video) => this.watchVideo(video)} />
                         </div>
                 }
             </section>

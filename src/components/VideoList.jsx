@@ -14,7 +14,7 @@ export const VideoList = (props) => {
             <ul className="videos">
                 {props.videos.map((video, index) => {
                     return <VideoItem key={index.toString()} video={video} watchVideo={() => props.watchVideo(video)} />
-            })}
+                })}
             </ul>
         </section>
     );

@@ -15,13 +15,15 @@ const videosInfo = (state = initialState, action) => {
                 isFetching: true
             };
         case 'FETCH_VIDEOS_SUCCESS':
+            console.log('gdfg', action.payload);
             return {
                 ...state,
                 isFetching: true,
                 items: action.payload.videos,
                 pageInfo: {
                     perPage : action.payload.perPage,
-                    totalCount: action.payload.totalCount
+                    totalCount: action.payload.totalCount,
+                    nextPageToken: action.payload.nextPageToken
                 }
             };
         case 'FETCH_VIDEOS_FAILURE':

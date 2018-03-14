@@ -22,7 +22,7 @@ export const VideoItem = (props) => {
             <div className="thumbnail">
                 <div className="video-preview">
                     <img src={props.video.snippet.thumbnails.high.url} alt={videoInfo.title} />
-                    <a href="#" className="play-button"></a>
+                    <a className="play-button"></a>
                 </div>
                 <div className="video-description">
                 <h2>{videoInfo.title}</h2>

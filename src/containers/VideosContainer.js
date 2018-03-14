@@ -8,12 +8,13 @@ const mapStateToProps = (state) => {
         videos: state.videos.items,
         video: state.videos.video,
         isFetching : state.videos.isFetching,
+        pageInfo: state.videos.pageInfo,
         videoTypes: state.videos.videoTypes
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchVideos : (query, videoType) => { console.log(query, videoType); return dispatch(fetchVideos(query, videoType)) },
+    fetchVideos : (query, videoType) => dispatch(fetchVideos(query, videoType)),
     setActiveVideo: (id) => dispatch(setActiveVideo(id))
 });
 

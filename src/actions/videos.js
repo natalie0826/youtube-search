@@ -12,12 +12,11 @@ export const fetchVideos = (search = '', videoType = 'any') => {
             `videoType=${videoType}&` +
             `key=${constants.api}&` +
             `q=${search}`;
-        console.log(url);
         return api
             .get(url)
             .then((response) => {
                 if (response.data.items.length) {
-                    dispatch(fetchVideosSuccess(response.data.items));
+                    dispatch(fetchVideosSuccess(response.data));
                     return dispatch(setActiveVideo(response.data.items[0].id.videoId));
                 } else {
                     return dispatch(fetchVideosFailure('no data'));
@@ -34,7 +33,10 @@ export const fetchVideosStart = () => ({
 export const fetchVideosSuccess = (data) => ({
     type: videosActions.FETCH_VIDEOS_SUCCESS,
     payload: {
-        videos: data
+        videos: data.items,
+        perPage : data.pageInfo.resultsPerPage,
+        totalCount: data.pageInfo.totalResults,
+        nextPageToken: data.nextPageToken
     }
 });
 

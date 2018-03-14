@@ -11,7 +11,7 @@ export const Loading = (props) => {
 
     return (
         <div className='loading'>
-            <BeatLoader color={'rgb(22, 1, 1)'} loading={props.loading}/>
+            <BeatLoader color={'#4B99AD'} loading={props.loading}/>
         </div>
     )
 };
