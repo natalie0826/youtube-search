@@ -1,0 +1,99 @@
+/* videoListItem.css */
+
+.video-item {
+    flex-basis: 22%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 1.5%;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 28px -7px rgba(0, 0, 0, 0.1);
+}
+
+.video-item:hover {
+    position: relative;
+}
+
+.video-item:hover:after {
+    content: url('http://www.iconninja.com/files/617/400/948/multimedia-youtube-film-video-media-play-player-icon.png');
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 30%;
+    top: 10%;
+}
+
+.video-item img {
+    width: 100%;
+    background:rgba(0,0,0,.75);
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity .30s ease;
+    -webkit-transition: opacity .30s ease;
+    -moz-transition: opacity .30s ease;
+    -ms-transition: opacity .30s ease;
+    -o-transition: opacity .30s ease;
+}
+
+.video-item img:hover {
+    opacity: 0.5;
+    transition: opacity .30s ease;
+    -webkit-transition: opacity .30s ease;
+    -moz-transition: opacity .30s ease;
+    -ms-transition: opacity .30s ease;
+    -o-transition: opacity .30s ease;
+}
+
+.thumbnail {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.video-description {
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.video-description h2 {
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.video-details {
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+}
+
+.video-details span {
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.video-channel,
+.video-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-channel .title,
+.video-date .title {
+    color: #aaa;
+    margin-bottom: 5px;
+    font-size: 0.65rem;
+    font-weight: normal;
+}
+
+.video-date {
+    align-items: flex-end;
+}
