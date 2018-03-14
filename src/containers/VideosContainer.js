@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { fetchVideos, setActiveVideo } from '../actions/videos';
-import VideoApp from '../components/VideoApp';
+import VideoApp from '../components/VideoApp/VideoApp';
 
 const mapStateToProps = (state) => {
     return {

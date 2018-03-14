@@ -1,55 +1,54 @@
-import { api } from './api';
-import { constants } from '../constants/constants';
-import { videosActions } from './videosActions';
+import { api } from '../tools/ajax-tool';
+import { BASE_URL, API, ACTION_TYPES } from '../constants/app';
 
 export const fetchVideos = (search = '', videoType = 'any') => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(fetchVideosStart());
-        const url = constants.baseUrl +
-            `?part=snippet&` +
-            `maxResults=8&` +
-            `type=video&` +
+
+        const url =
+            `${BASE_URL}?part=snippet&` +
+            'maxResults=8&' +
+            'type=video&' +
             `videoType=${videoType}&` +
-            `key=${constants.api}&` +
+            `key=${API}&` +
             `q=${search}`;
+
+        console.log(url);
+
         return api
             .get(url)
-            .then((response) => {
+            .then(response => {
                 if (response.data.items.length) {
-                    dispatch(fetchVideosSuccess(response.data));
-                    return dispatch(setActiveVideo(response.data.items[0].id.videoId));
+                    dispatch(fetchVideosSuccess(response.data.items));
                 } else {
-                    return dispatch(fetchVideosFailure('no data'));
+                    dispatch(fetchVideosFailure('no data'));
                 }
             })
             .catch(error => dispatch(fetchVideosFailure(error)));
-    }
+    };
 };
 
 export const fetchVideosStart = () => ({
-    type: videosActions.FETCH_VIDEOS_START
+    type: ACTION_TYPES.FETCH_VIDEOS_START,
 });
 
-export const fetchVideosSuccess = (data) => ({
-    type: videosActions.FETCH_VIDEOS_SUCCESS,
+export const fetchVideosSuccess = data => ({
+    type: ACTION_TYPES.FETCH_VIDEOS_SUCCESS,
     payload: {
-        videos: data.items,
-        perPage : data.pageInfo.resultsPerPage,
-        totalCount: data.pageInfo.totalResults,
-        nextPageToken: data.nextPageToken
-    }
+        videos: data,
+    },
 });
 
-export const fetchVideosFailure = (error) => ({
-    type: videosActions.FETCH_VIDEOS_FAILURE,
+export const fetchVideosFailure = error => ({
+    type: ACTION_TYPES.FETCH_VIDEOS_FAILURE,
     payload: {
-        error
-    }
+        error,
+    },
 });
 
-export const setActiveVideo = (id) => ({
-    type: videosActions.SET_ACTIVE_VIDEO,
+export const setActiveVideo = id => ({
+    type: ACTION_TYPES.SET_ACTIVE_VIDEO,
     payload: {
-        id
-    }
+        id,
+    },
 });

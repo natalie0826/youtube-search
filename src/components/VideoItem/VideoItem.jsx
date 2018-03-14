@@ -1,19 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../styles/video.css';
+import { getDate } from '../../tools/date-tool';
+import './video.css';
 
 export const VideoItem = (props) => {
     VideoItem.propTypes = {
         video: PropTypes.object.isRequired,
         watchVideo: PropTypes.func.isRequired
     };
-
-    const getDate = (date) => {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        const dateUTC = new Date(date);
-        return dateUTC.getDate() + ' ' + months[dateUTC.getMonth()] + ' ' + dateUTC.getFullYear();
-    }
 
     const videoInfo = props.video.snippet;
 
@@ -22,7 +17,7 @@ export const VideoItem = (props) => {
             <div className="thumbnail">
                 <div className="video-preview">
                     <img src={props.video.snippet.thumbnails.high.url} alt={videoInfo.title} />
-                    <a className="play-button"></a>
+                    <div className="play-button"></div>
                 </div>
                 <div className="video-description">
                 <h2>{videoInfo.title}</h2>

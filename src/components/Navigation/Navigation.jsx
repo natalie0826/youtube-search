@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Search } from './Search';
-import { Selection } from './Selection';
-import '../../styles/navigation.css';
-import { Loading } from '../Loading';
+import { Search } from '../Search/Search';
+import { Selection } from '../Selection/Selection';
+import { Loading } from '../Loading/Loading';
+import './navigation.css';
 
 export const Navigation = (props) => {
     Navigation.propTypes = {

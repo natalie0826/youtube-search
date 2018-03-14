@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../styles/selection.css';
+import './selection.css';
 
 export const Selection = (props) => {
     Selection.propTypes = {
@@ -13,7 +13,7 @@ export const Selection = (props) => {
     return (
         <div className="selection">
             <label>{props.title}</label>
-            <select value="" onChange={props.onItemChanged}>
+            <select onChange={props.onItemChanged}>
                 {props.items.map(item => (
                     <option value={item} key={item}>{item}</option>
                 ))}

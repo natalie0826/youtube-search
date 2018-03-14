@@ -2,10 +2,10 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 import { shallow } from 'enzyme';
-import { configureStore } from '../../configureStore';
+import { configureStore } from '../../../configureStore';
 import { Navigation } from './Navigation';
-import { Selection } from './Selection';
-import { Search } from './Search';
+import { Selection } from '../Selection';
+import { Search } from '../Search';
 
 describe('Navigation functional component', () => {
     const navigationProps = {

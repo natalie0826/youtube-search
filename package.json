@@ -1,41 +1,40 @@
 {
-  "name": "youtube-search",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "classnames": "^2.2.5",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "lodash": "^4.17.5",
-    "prop-types": "^15.5.10",
-    "react": "^16.2.0",
-    "react-dynamic-modal": "^1.1.1",
-    "react-infinite-scroll-component": "^3.0.2",
-    "react-redux": "^5.0.6",
-    "react-scripts": "1.1.1",
-    "react-spinners": "^0.2.6",
-    "react-tap-event-plugin": "^3.0.2",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "shallow": "^1.0.0",
-    "sinon": "^4.4.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "enzyme": "^3.3.0",
-    "enzyme-to-json": "^3.3.1",
-    "eslint": "^4.1.1",
-    "jest": "^20.0.4",
-    "jest-enzyme": "^4.1.1",
-    "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.2.0",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-mock-store": "^1.5.1"
-  }
+    "name": "youtube-search",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "axios": "^0.18.0",
+        "classnames": "^2.2.5",
+        "lodash": "^4.17.5",
+        "prop-types": "^15.5.10",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-dynamic-modal": "^1.1.1",
+        "react-redux": "^5.0.6",
+        "react-scripts": "1.1.1",
+        "react-spinners": "^0.2.6",
+        "react-tap-event-plugin": "^3.0.2",
+        "redux": "^3.7.2",
+        "redux-thunk": "^2.2.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.2.3",
+        "enzyme": "^3.3.0",
+        "enzyme-to-json": "^3.3.1",
+        "eslint": "^4.1.1",
+        "jest": "^20.0.4",
+        "jest-enzyme": "^4.1.1",
+        "react-addons-test-utils": "^15.6.2",
+        "enzyme-adapter-react-16": "^1.1.1",
+        "redux-devtools-extension": "^2.13.2",
+        "redux-mock-store": "^1.5.1",
+        "shallow": "^1.0.0",
+        "sinon": "^4.4.5"
+    }
 }

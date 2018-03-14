@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { videos } from './videos';
+import videos from './videos';
 
 export const reducers = combineReducers({
-    videos
+    videos,
 });
