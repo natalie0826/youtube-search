@@ -16,6 +16,7 @@ export default class VideoApp extends React.Component {
         video: PropTypes.object,
         videos: PropTypes.array,
         videoTypes: PropTypes.array.isRequired,
+        pageInfo: PropTypes.object.isRequired,
         fetchVideos: PropTypes.func.isRequired,
         setActiveVideo: PropTypes.func.isRequired,
     };
@@ -42,8 +43,7 @@ export default class VideoApp extends React.Component {
         }
     };
 
-    fetchVideosAgain(searchQuery = this.state.searchQuery,
-                    videoType = this.props.videoTypes[0]) {
+    fetchVideosAgain(searchQuery = this.state.searchQuery, videoType = this.props.videoTypes[0], nextPageToken) {
         this.props.fetchVideos(searchQuery, videoType);
     }
 
@@ -59,6 +59,10 @@ export default class VideoApp extends React.Component {
         this.fetchVideosAgain(this.state.searchQuery, this.state.videoType);
     };
 
+    loadMoreVideos = () => {
+        this.fetchVideosAgain(this.state.searchQuery, this.state.videoType, this.props.pageInfo.nextPageToken)
+    }
+
     render() {
         const VideosWithInfinite = withInfiniteScroll(VideoList);
 
@@ -70,6 +74,7 @@ export default class VideoApp extends React.Component {
                     videoTypeChanged={this.videoTypeChanged}
                     updateSettings={this.updateSettings}
                     isFetching={this.props.isFetching}
+                    pageInfo={this.props.pageInfo}
                 />
                 {this.props.isFetching ? (
                     <Loading loading={this.props.isFetching} />
@@ -77,16 +82,16 @@ export default class VideoApp extends React.Component {
                     <div className="videos">
                         <VideoWatch title={this.props.video.snippet.title} id={this.props.video.id.videoId} />
 
-                        <VideoList
+                        {/* <VideoList
                             videos={this.props.videos}
                             watchVideo={video => this.watchVideo(video)}
-                        />
+                        /> */}
 
-                        {/* <VideosWithInfinite
+                        <VideosWithInfinite
                             list={this.props.videos}
                             watchVideo={video => this.watchVideo(video)}
-                            onpaginatedSearch
-                        /> */}
+                            onPaginatedSearch={() => this.loadMoreVideos()}
+                        />
                     </div>
                 )}
             </section>
