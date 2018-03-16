@@ -36,7 +36,7 @@ export const fetchVideosSuccess = data => ({
         videos: data.items,
         perPage: data.pageInfo.resultsPerPage,
         totalCount: data.pageInfo.totalResults,
-        nextPageToken: data.nextPageToken
+        nextPageToken: data.nextPageToken,
     },
 });
 
