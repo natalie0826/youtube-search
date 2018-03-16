@@ -1,0 +1,36 @@
+.category-modal {
+    padding: 15px 30px;
+}
+
+.category-modal h1 {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    color: #160101;
+}
+
+.category-modal h3 {
+    margin-top: 0;
+    padding-top: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: rgba(12, 12, 12, .4);
+    font-style: italic;
+}
+
+.modal-footer {
+    margin: 20px 0;
+}
+
+.video-player {
+    display: flex;
+    width: 100%;
+    margin: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame-video {
+    flex: 0 0 100%;
+    display: flex;
+    height: 500px;
+}
