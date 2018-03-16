@@ -2,6 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 import { shallow } from 'enzyme';
+
 import { configureStore } from '../configureStore';
 import VideoApp from './VideoApp';
 import Loading from './Loading';
