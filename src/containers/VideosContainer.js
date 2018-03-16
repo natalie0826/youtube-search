@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 
-import { fetchVideos, setActiveVideo } from '../actions/videos';
+import {
+    fetchVideos,
+    setActiveVideo,
+    loadMoreVideos,
+    setVideoType,
+    updateSearchQuery } from '../actions/videos';
 import VideoApp from '../components/VideoApp/VideoApp';
 
 const mapStateToProps = (state) => {
@@ -14,8 +19,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchVideos : (query, videoType) => dispatch(fetchVideos(query, videoType)),
-    setActiveVideo: (id) => dispatch(setActiveVideo(id))
+    fetchVideos: (query, videoType, nextPage) => dispatch(fetchVideos(query, videoType, nextPage)),
+    setActiveVideo: (id) => dispatch(setActiveVideo(id)),
+    setVideoType: (videoType) => setVideoType(videoType),
+    updateSearchQuery: (searchQuery) => updateSearchQuery(searchQuery),
+    loadMoreVideos: (pageToken, searchQuery, videoType) => dispatch(loadMoreVideos(pageToken, searchQuery, videoType))
 });
 
 export const VideosContainer = connect(
