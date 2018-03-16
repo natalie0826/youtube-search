@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BeatLoader } from 'react-spinners';
 
-import './loading.css';
+import './Loading.css';
 
 export const Loading = (props) => {
     Loading.propTypes = {

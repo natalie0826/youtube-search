@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './watch.css';
+import './VideoWatch.css';
 
 export const VideoWatch = ({ id, title }) => {
     VideoWatch.propTypes = {

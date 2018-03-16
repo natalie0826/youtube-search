@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './search.css';
+import './Search.css';
 
 export const Search = (props) => {
     Search.propTypes = {

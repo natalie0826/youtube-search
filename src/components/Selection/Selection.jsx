@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './selection.css';
+import './Selection.css';
 
 export const Selection = (props) => {
     Selection.propTypes = {
