@@ -14,7 +14,9 @@ const mapStateToProps = (state) => {
         video: state.videos.video,
         isFetching : state.videos.isFetching,
         pageInfo: state.videos.pageInfo,
-        videoTypes: state.videos.videoTypes
+        videoTypes: state.videos.videoTypes,
+        searchQuery: state.pages.searchQuery,
+        activeVideoType: state.pages.activeVideoType
     }
 };
 

@@ -10,6 +10,7 @@ import './Navigation.css';
 export const Navigation = (props) => {
     Navigation.propTypes = {
         searchUpdate: PropTypes.func.isRequired,
+        activeType: PropTypes.string.isRequired,
         videoTypes: PropTypes.array.isRequired,
         videoTypeChanged: PropTypes.func.isRequired,
         updateSettings: PropTypes.func.isRequired,
@@ -26,7 +27,7 @@ export const Navigation = (props) => {
             </div>
             <div className="settings-block">
                 <div className="title-separator">Settings</div>
-                <Selection title="Video type" items={props.videoTypes} onItemChanged={props.videoTypeChanged} />
+                <Selection title="Video type" items={props.videoTypes} active={props.activeType} onItemChanged={props.videoTypeChanged} />
                 <button className="save" onClick={props.updateSettings}>Update settings</button>
             </div>
             <div className="page-info-block">

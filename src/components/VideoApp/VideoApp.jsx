@@ -15,10 +15,15 @@ export default class VideoApp extends React.Component {
         isFetching: PropTypes.bool,
         video: PropTypes.object,
         videos: PropTypes.array,
+        activeVideoType: PropTypes.string.isRequired,
         videoTypes: PropTypes.array.isRequired,
         pageInfo: PropTypes.object.isRequired,
+        searchQuery: PropTypes.string.isRequired,
         fetchVideos: PropTypes.func.isRequired,
         setActiveVideo: PropTypes.func.isRequired,
+        setVideoType: PropTypes.func.isRequired,
+        updateSearchQuery: PropTypes.func.isRequired,
+        loadMoreVideos: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -47,10 +52,6 @@ export default class VideoApp extends React.Component {
         this.props.fetchVideos(searchQuery, videoType);
     }
 
-    videoTypeChanged = event => {
-        this.setState({ videoType: event.target.value });
-    };
-
     watchVideo = video => {
         this.props.setActiveVideo(video.id.videoId);
     };
@@ -70,8 +71,9 @@ export default class VideoApp extends React.Component {
             <section className="main">
                 <Navigation
                     searchUpdate={this.searchUpdate}
+                    activeType={this.props.activeVideoType}
                     videoTypes={this.props.videoTypes}
-                    videoTypeChanged={this.videoTypeChanged}
+                    videoTypeChanged={(event) => {console.log('evebt', event); return this.props.setVideoType(event.target.value)}}
                     updateSettings={this.updateSettings}
                     isFetching={this.props.isFetching}
                     pageInfo={this.props.pageInfo}

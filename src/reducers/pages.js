@@ -2,7 +2,7 @@ import { ACTION_TYPES, VIDEO_TYPES } from '../constants/app';
 
 const initialState = {
     searchQuery: '',
-    activeType: VIDEO_TYPES[0]
+    activeVideoType: VIDEO_TYPES[0]
 };
 
 export default (state = initialState, action) => {
