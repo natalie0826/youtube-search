@@ -1,4 +1,4 @@
-import { ACTION_TYPES, VIDEO_TYPES } from '../constants/app';
+import { ACTION_TYPES } from '../constants/app';
 
 const initialState = {
     isFetching: true,

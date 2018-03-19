@@ -7,37 +7,63 @@ import { Loading } from '../Loading/Loading';
 import { PageInfo } from '../PageInfo/PageInfo';
 import './Navigation.css';
 
-export const Navigation = (props) => {
-    Navigation.propTypes = {
-        searchUpdate: PropTypes.func.isRequired,
-        activeType: PropTypes.string.isRequired,
-        videoTypes: PropTypes.array.isRequired,
-        videoTypeChanged: PropTypes.func.isRequired,
-        updateSettings: PropTypes.func.isRequired,
+export default class Navigation extends React.Component {
+    static propTypes = {
         isFetching: PropTypes.bool.isRequired,
-        pageInfo: PropTypes.object.isRequired
+        pageInfo: PropTypes.object.isRequired,
+        videoTypes: PropTypes.array.isRequired,
+        activeType: PropTypes.string.isRequired,
+        searchQuery: PropTypes.string.isRequired,
+        perPageValues: PropTypes.array.isRequired,
+        perPage: PropTypes.number.isRequired,
+        fetchVideos: PropTypes.func.isRequired,
+        setActiveVideo: PropTypes.func.isRequired,
+        setVideoType: PropTypes.func.isRequired,
+        updateSearchQuery: PropTypes.func.isRequired,
+
+        // updateSettings: PropTypes.func.isRequired,
     };
 
-    return (
-        <div className="navigation">
-            <div className="search-block">
-                <div className="title-separator">Start searching</div>
-                <Search searchUpdate={props.searchUpdate} />
-                <Loading loading={props.isFetching} />
-            </div>
-            <div className="settings-block">
-                <div className="title-separator">Settings</div>
-                <Selection title="Video type" items={props.videoTypes} active={props.activeType} onItemChanged={props.videoTypeChanged} />
-                <Selection title="Per page" items={props.videoTypes} active={props.activeType} onItemChanged={props.videoTypeChanged} />
-                <button className="save" onClick={props.updateSettings}>Update settings</button>
-            </div>
-            <div className="page-info-block">
-                <div className="title-separator">Page info</div>
-                <div className="info">
-                    <PageInfo subtitle="Per page" value={props.pageInfo.perPage} />
-                    <PageInfo subtitle="Total count" value={props.pageInfo.totalCount} />
+    componentDidMount() {
+        this.props.fetchVideos();
+    }
+
+    render() {
+        const {
+            isFetching,
+            pageInfo,
+            videoTypes,
+            activeType,
+            searchQuery,
+            perPageValues,
+            perPage,
+            fetchVideos,
+            setActiveVideo,
+            setVideoType,
+            updateSearchQuery,
+        } = this.props;
+
+        return (
+            <section className="navigation">
+                <div className="search-block">
+                    <div className="title-separator">Start searching</div>
+                    <Search value={searchQuery} searchUpdate={(event) => updateSearchQuery(event.target.value)} />
+                    <Loading loading={isFetching} />
                 </div>
-            </div>
-        </div>
-    );
+                <div className="settings-block">
+                    <div className="title-separator">Settings</div>
+                    <Selection title="Video type" items={videoTypes} active={activeType} onItemChanged={event => setVideoType(event.target.value)} />
+                    {/* <Selection title="Per page" items={perPageValues} active={perPage} onItemChanged={props.videoTypeChanged} /> */}
+                    <button className="save" onClick={fetchVideos}>Update settings</button>
+                </div>
+                <div className="page-info-block">
+                    <div className="title-separator">Page info</div>
+                    <div className="info">
+                        <PageInfo subtitle="Per page" value={pageInfo.perPage} />
+                        <PageInfo subtitle="Total count" value={pageInfo.totalCount} />
+                    </div>
+                </div>
+            </section>
+        );
+    }
 }

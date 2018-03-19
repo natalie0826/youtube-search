@@ -2,7 +2,7 @@ import keyMirror from 'keymirror';
 
 export const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 export const API = 'AIzaSyBbBlfM1ilxaDmUqh4y9QMCvjyapR6RjZs';
-export const MIN_QUERY_LENGTH = 3;
+export const MIN_QUERY_LENGTH = 2;
 export const VIDEO_TYPES = ['any', 'episode', 'movie'];
 export const PER_PAGE_VALUES = [16, 24, 32, 40];
 
