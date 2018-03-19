@@ -15,7 +15,7 @@ export default class VideoApp extends React.Component {
         isFetching: PropTypes.bool,
         video: PropTypes.object,
         videos: PropTypes.array,
-        activeVideoType: PropTypes.string.isRequired,
+        activeType: PropTypes.string.isRequired,
         videoTypes: PropTypes.array.isRequired,
         pageInfo: PropTypes.object.isRequired,
         searchQuery: PropTypes.string.isRequired,
@@ -31,7 +31,6 @@ export default class VideoApp extends React.Component {
         this.state = {
             video: {},
             searchQuery: '',
-            videoType: '',
         };
 
         this.fetchVideosAgain = debounce(this.fetchVideosAgain, 500);
@@ -48,7 +47,7 @@ export default class VideoApp extends React.Component {
         }
     };
 
-    fetchVideosAgain(searchQuery = this.state.searchQuery, videoType = this.props.videoTypes[0], nextPageToken) {
+    fetchVideosAgain(searchQuery = this.state.searchQuery, videoType = this.props.activeType, nextPageToken) {
         this.props.fetchVideos(searchQuery, videoType);
     }
 
@@ -57,11 +56,11 @@ export default class VideoApp extends React.Component {
     };
 
     updateSettings = () => {
-        this.fetchVideosAgain(this.state.searchQuery, this.state.videoType);
+        this.fetchVideosAgain(this.state.searchQuery, this.props.activeType);
     };
 
     loadMoreVideos = () => {
-        this.fetchVideosAgain(this.state.searchQuery, this.state.videoType, this.props.pageInfo.nextPageToken)
+        this.fetchVideosAgain(this.state.searchQuery, this.props.activeType, this.props.pageInfo.nextPageToken)
     }
 
     render() {
@@ -71,9 +70,9 @@ export default class VideoApp extends React.Component {
             <section className="main">
                 <Navigation
                     searchUpdate={this.searchUpdate}
-                    activeType={this.props.activeVideoType}
+                    activeType={this.props.activeType}
                     videoTypes={this.props.videoTypes}
-                    videoTypeChanged={(event) => {console.log('evebt', event); return this.props.setVideoType(event.target.value)}}
+                    videoTypeChanged={event => this.props.setVideoType(event.target.value)}
                     updateSettings={this.updateSettings}
                     isFetching={this.props.isFetching}
                     pageInfo={this.props.pageInfo}

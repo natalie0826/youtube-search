@@ -14,16 +14,16 @@ const mapStateToProps = (state) => {
         video: state.videos.video,
         isFetching : state.videos.isFetching,
         pageInfo: state.videos.pageInfo,
-        videoTypes: state.videos.videoTypes,
-        searchQuery: state.pages.searchQuery,
-        activeVideoType: state.pages.activeVideoType
+        videoTypes: state.search.videoTypes,
+        searchQuery: state.search.searchQuery,
+        activeType: state.search.activeType
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
     fetchVideos: (query, videoType, nextPage) => dispatch(fetchVideos(query, videoType, nextPage)),
     setActiveVideo: (id) => dispatch(setActiveVideo(id)),
-    setVideoType: (videoType) => setVideoType(videoType),
+    setVideoType: (videoType) => dispatch(setVideoType(videoType)),
     updateSearchQuery: (searchQuery) => updateSearchQuery(searchQuery),
     loadMoreVideos: (pageToken, searchQuery, videoType) => dispatch(loadMoreVideos(pageToken, searchQuery, videoType))
 });
