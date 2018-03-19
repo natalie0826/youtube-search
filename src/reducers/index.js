@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import videos from './videos';
-import pages from './pages';
+import search from './search';
 
 export const reducers = combineReducers({
     videos,
-    pages
+    search
 });
