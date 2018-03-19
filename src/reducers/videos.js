@@ -5,7 +5,6 @@ const initialState = {
     video: {},
     items: [],
     pageInfo: {},
-    videoTypes: VIDEO_TYPES,
     error: null,
 };
 

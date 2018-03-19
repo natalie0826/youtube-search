@@ -1,8 +1,11 @@
-import { ACTION_TYPES, VIDEO_TYPES } from '../constants/app';
+import { ACTION_TYPES, VIDEO_TYPES, PER_PAGE_VALUES } from '../constants/app';
 
 const initialState = {
     searchQuery: '',
-    activeVideoType: VIDEO_TYPES[0]
+    videoTypes: VIDEO_TYPES,
+    activeType: VIDEO_TYPES[0],
+    perPageValues: PER_PAGE_VALUES,
+    perPage: PER_PAGE_VALUES[0]
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +19,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 activeType: action.payload.videoType
+            }
+        case ACTION_TYPES.SET_PER_PAGE_VALUE:
+            return {
+                ...state,
+                perPage: action.payload.perPage
             }
         default:
             return state
