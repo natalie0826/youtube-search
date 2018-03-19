@@ -10,9 +10,12 @@ export const PageInfo = (props) => {
     };
 
     return (
-        <div className="info">
+        <div className="row">
             <span className="subtitle-content">{props.subtitle}</span>
-            <span className="subtitle-info">{props.value}</span>              
-        </div>
+            <div className="dots-center">
+                <span className="dots"></span>
+            </div>
+            <span className="subtitile-info">{props.value}</span>
+        </div> 
     )
 }

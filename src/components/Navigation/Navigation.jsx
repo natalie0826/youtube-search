@@ -28,12 +28,15 @@ export const Navigation = (props) => {
             <div className="settings-block">
                 <div className="title-separator">Settings</div>
                 <Selection title="Video type" items={props.videoTypes} active={props.activeType} onItemChanged={props.videoTypeChanged} />
+                <Selection title="Per page" items={props.videoTypes} active={props.activeType} onItemChanged={props.videoTypeChanged} />
                 <button className="save" onClick={props.updateSettings}>Update settings</button>
             </div>
             <div className="page-info-block">
                 <div className="title-separator">Page info</div>
-                <PageInfo subtitle="Per page" value={props.pageInfo.perPage} />
-                <PageInfo subtitle="Total count" value={props.pageInfo.totalCount} />
+                <div className="info">
+                    <PageInfo subtitle="Per page" value={props.pageInfo.perPage} />
+                    <PageInfo subtitle="Total count" value={props.pageInfo.totalCount} />
+                </div>
             </div>
         </div>
     );
