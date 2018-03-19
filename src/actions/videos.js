@@ -1,7 +1,7 @@
 import { api } from '../tools/ajax-tool';
 import { BASE_URL, API, ACTION_TYPES } from '../constants/app';
 
-export const fetchVideos = (searchQuery = '', videoType = 'any', pageToken = '') => {
+export const fetchVideos = (searchQuery = '', videoType = 'any') => {
     return dispatch => {
         dispatch(fetchVideosStart());
 
@@ -11,7 +11,6 @@ export const fetchVideos = (searchQuery = '', videoType = 'any', pageToken = '')
             'type=video&' +
             `videoType=${videoType}&` +
             `key=${API}&` +
-            `pageToken=${pageToken}&` +
             `q=${searchQuery}`;
 
         return api
@@ -106,6 +105,13 @@ export const setVideoType = videoType => ({
 export const updateSearchQuery = searchQuery => ({
     type: ACTION_TYPES.UPDATE_SEARCH_QUERY,
     payload: {
-        searchQuery
+        searchQuery,
     }
 });
+
+export const setPerPageValue = perPage => ({
+    type: ACTION_TYPES.SET_PER_PAGE_VALUE,
+    payload: {
+        perPage,
+    }
+})
