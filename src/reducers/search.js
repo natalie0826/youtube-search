@@ -9,23 +9,23 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case ACTION_TYPES.UPDATE_SEARCH_QUERY:
             return {
                 ...state,
                 searchQuery: action.payload.searchQuery
-            }
+            };
         case ACTION_TYPES.SET_VIDEO_TYPE:
             return {
                 ...state,
                 activeType: action.payload.videoType
-            }
+            };
         case ACTION_TYPES.SET_PER_PAGE_VALUE:
             return {
                 ...state,
                 perPage: action.payload.perPage
-            }
+            };
         default:
-            return state
+            return state;
     }
-}
+};
