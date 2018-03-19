@@ -6,20 +6,25 @@
         "node": true
     },
     "extends": [
+        "airbnb",
         "eslint:recommended",
-        "plugin:import/recommended",
-        "plugin:jasmine/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
     "parser": "babel-eslint",
     "parserOptions": {
+        "ecmaVersion": 6,
         "sourceType": "module",
-        "ecmaVersion": 6
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
     "plugins": [
-        "import",
-        "jasmine",
-        "react"
+        "react",
+        "jsx-a11y",
+        "import"
     ],
     "root": true,
     "rules": {
@@ -43,16 +48,31 @@
         "constructor-super": 1,
         "curly": "error",
         "eol-last": "error",
+        "propWrapperFunctions": [ "forbidExtraProps" ],
         "func-call-spacing": "error",
         "generator-star-spacing": [
             "error",
             "after"
         ],
+        "import/no-unresolved": "off",
         "indent": [
             "warn",
             4,
             {
                 "SwitchCase": 1
+            }
+        ],
+        "jsx-a11y/rule-name": 0,
+        "jsx-a11y/href-no-hash": "off",
+        "jsx-a11y/img-uses-alt": 0,
+        "jsx-a11y/img-has-alt": 0,
+        "jsx-a11y/anchor-is-valid": [
+            "warn",
+            {
+                "aspects":
+                [
+                    "invalidHref"
+                ]
             }
         ],
         "jsx-quotes": "error",
@@ -143,6 +163,7 @@
                 "allowTemplateLiterals": true
             }
         ],
+        "import/prefer-default-export": "off",
         "radix": "error",
         "require-await": "error",
         "semi": "error",
@@ -182,11 +203,6 @@
             "after"
         ],
         "import/first": "error",
-        "import/no-amd": "error",
-        "jasmine/no-focused-tests": "off",
-        "jasmine/no-spec-dupes": [
-            "warn",
-            "branch"
-        ]
+        "import/no-amd": "error"
     }
 }
