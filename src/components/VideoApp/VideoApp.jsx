@@ -20,11 +20,6 @@ export const VideoApp = (props) => {
 
     const watchVideo = video => {
         props.setActiveVideo(video.id.videoId);
-        scrollToTop();
-    };
-
-    const scrollToTop = () => {
-        window.scroll(0, window.pageYOffset - 50);
     };
 
     const {
@@ -50,7 +45,7 @@ export const VideoApp = (props) => {
                         onPaginatedSearch={props.loadMoreVideos}
                         isLoading={props.isLoading}
                     />
-                    {props.isLoading && <Loading loading={props.isFetching} />}
+                    {props.isLoading && <Loading loading={props.isLoading} />}
                 </div>
             )}
         </section>
