@@ -10,8 +10,8 @@ import './index.css';
 render(
     <Provider store={configureStore}>
         <section className="main">
-            <VideosContainer />
             <SearchContainer />
+            <VideosContainer />
         </section>
     </Provider>,
     document.getElementById('root'),
