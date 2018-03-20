@@ -13,9 +13,9 @@ export const PageInfo = (props) => {
         <div className="row">
             <span className="subtitle-content">{props.subtitle}</span>
             <div className="dots-center">
-                <span className="dots"></span>
+                <span className="dots" />
             </div>
             <span className="subtitile-info">{props.value}</span>
-        </div> 
-    )
-}
+        </div>
+    );
+};

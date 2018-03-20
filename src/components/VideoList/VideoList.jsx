@@ -6,7 +6,7 @@ import './VideoList.css';
 
 export const VideoList = props => {
     VideoList.propTypes = {
-        list: PropTypes.array.isRequired,
+        list: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
 
     return (
@@ -14,6 +14,7 @@ export const VideoList = props => {
             <ul className="videos">
                 {props.list.map((video) => {
                     const videoInfo = video.snippet;
+
                     return (
                         <VideoItem
                             key={video.id.videoId}
@@ -21,7 +22,8 @@ export const VideoList = props => {
                             title={videoInfo.title}
                             imgUrl={videoInfo.thumbnails.high.url}
                             channel={videoInfo.channelTitle}
-                            date={videoInfo.publishedAt} />
+                            date={videoInfo.publishedAt}
+                        />
                     );
                 })}
             </ul>

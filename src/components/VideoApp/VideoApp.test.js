@@ -1,11 +1,8 @@
 import React from 'react';
-import sinon from 'sinon';
-import { mount } from 'enzyme';
 import { shallow } from 'enzyme';
 
 import { configureStore } from '../configureStore';
 import VideoApp from './VideoApp';
-import Loading from './Loading';
 
 describe('VideoApp stateful component', () => {
     const videoProps = {
@@ -118,8 +115,6 @@ describe('VideoApp stateful component', () => {
     const component = shallow(<VideoApp {...videoProps} store={configureStore} />);
 
     it('renders VideoApp component', () => {
-        expect(component.length).toBe(1);
+        expect(component.length).toHaveLength(1);
     });
-
-
 });

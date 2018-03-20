@@ -8,12 +8,12 @@ describe('Selection functional component', () => {
         items: ['one', 'two', 'three', 'four', 'five'],
         onItemChanged: jest.fn(),
         title: 'title'
-    }
+    };
 
     const component = shallow(<Selection {...selectionProps} />);
 
     it('has select tag', () => {
-        expect(component.find('select').length).toBe(1);
+        expect(component.find('select').length).toHaveLength(1);
     });
 
     it('expects selectedValue to be equal to the props value', () => {
@@ -21,14 +21,14 @@ describe('Selection functional component', () => {
     });
 
     it('count of options should be egual with options.length (where options is an array passed as a prop)', () => {
-        expect(component.find('option').length).toBe(selectionProps.items.length);
+        expect(component.find('option').length).toHaveLength(selectionProps.items.length);
     });
 
     it('calls props method changeSelection after changing an option', () => {
         const callbackChange = sinon.spy();
-        component.setProps({onItemChanged: callbackChange});
+        component.setProps({ onItemChanged: callbackChange });
         expect(callbackChange.called).toBeFalsy();
-        component.find('select').props().onChange({ target: {value: 'two'}});
+        component.find('select').props().onChange({ target: { value: 'two' } });
         expect(callbackChange.called).toBeTruthy();
     });
 });
