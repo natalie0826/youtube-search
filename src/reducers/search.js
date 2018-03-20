@@ -15,14 +15,10 @@ export default (state = initialState, action) => {
                 ...state,
                 searchQuery: action.payload.searchQuery
             };
-        case ACTION_TYPES.SET_VIDEO_TYPE:
+        case ACTION_TYPES.UPDATE_SETTINGS:
             return {
                 ...state,
-                activeType: action.payload.videoType
-            };
-        case ACTION_TYPES.SET_PER_PAGE_VALUE:
-            return {
-                ...state,
+                activeType: action.payload.videoType,
                 perPage: action.payload.perPage
             };
         default:

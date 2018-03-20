@@ -2,13 +2,11 @@ import { connect } from 'react-redux';
 
 import {
     fetchVideos,
-    setActiveVideo,
-    setVideoType,
-    updateSearchQuery } from '../actions/videos';
+    updateSettings,
+    updateSearchQueryAndFetch } from '../actions/videos';
 import Navigation from '../components/Navigation/Navigation';
 
 const mapStateToProps = state => ({
-    isFetching: state.videos.isFetching,
     pageInfo: state.videos.pageInfo,
     videoTypes: state.search.videoTypes,
     activeType: state.search.activeType,
@@ -18,10 +16,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchVideos: (query, videoType, nextPage) => dispatch(fetchVideos(query, videoType, nextPage)),
-    setActiveVideo: id => dispatch(setActiveVideo(id)),
-    setVideoType: videoType => dispatch(setVideoType(videoType)),
-    updateSearchQuery: searchQuery => updateSearchQuery(searchQuery),
+    fetchVideos: () => dispatch(fetchVideos()),
+    updateSettings: (perPage, activeType) => dispatch(updateSettings(perPage, activeType)),
+    updateSearchQueryAndFetch: (searchQuery, videoType, perPage) => dispatch(updateSearchQueryAndFetch(searchQuery, videoType, perPage)),
 });
 
 export const SearchContainer = connect(

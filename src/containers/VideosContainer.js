@@ -1,16 +1,32 @@
 import { connect } from 'react-redux';
 
-import { loadMoreVideos } from '../actions/videos';
-import VideoApp from '../components/VideoApp/VideoApp';
+import {
+    loadMoreVideos,
+    setActiveVideo } from '../actions/videos';
+import { VideoApp } from '../components/VideoApp/VideoApp';
+
+const getState = (dispatch) => new Promise((resolve) => {
+    return dispatch((dispatch, getState) => resolve(getState()));
+});
 
 const mapStateToProps = state => ({
     videos: state.videos.items,
-    video: state.videos.video,
+    activeVideoId: state.videos.activeVideoId,
     isFetching: state.videos.isFetching,
+    isLoading: state.videos.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({
-    loadMoreVideos: (page, searchQ, type) => dispatch(loadMoreVideos(page, searchQ, type)),
+    loadMoreVideos: () => {
+        return getState(dispatch).then(state => {
+            dispatch(loadMoreVideos(
+                state.search.searchQuery,
+                state.search.activeType,
+                state.videos.pageInfo.perPage,
+                state.videos.pageInfo.nextPageToken));
+        });
+    },
+    setActiveVideo: (id) => dispatch(setActiveVideo(id))
 });
 
 export const VideosContainer = connect(

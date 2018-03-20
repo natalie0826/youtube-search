@@ -2,7 +2,8 @@ import { ACTION_TYPES } from '../constants/app';
 
 const initialState = {
     isFetching: true,
-    video: {},
+    isLoading: false,
+    activeVideoId: '',
     items: [],
     pageInfo: {},
     error: null,
@@ -25,7 +26,7 @@ export default (state = initialState, action) => {
                     totalCount: action.payload.totalCount,
                     nextPageToken: action.payload.nextPageToken
                 },
-                video: action.payload.videos[0],
+                activeVideoId: action.payload.videos[0].id.videoId,
             };
         case ACTION_TYPES.FETCH_VIDEOS_FAILURE:
             return {
@@ -33,11 +34,32 @@ export default (state = initialState, action) => {
                 isFetching: false,
                 error: action.payload.error,
             };
+        case ACTION_TYPES.LOAD_VIDEOS_START:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case ACTION_TYPES.LOAD_VIDEOS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                items: state.items.concat(action.payload.videos),
+                pageInfo: {
+                    ...state.pageInfo,
+                    nextPageToken: action.payload.nextPageToken
+                },
+            };
+        case ACTION_TYPES.LOAD_VIDEOS_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload.error,
+            };
         case ACTION_TYPES.SET_ACTIVE_VIDEO:
             return {
                 ...state,
                 isFetching: false,
-                video: state.items.find(item => item.id.videoId === action.payload.id),
+                activeVideoId: action.payload.id,
             };
         default:
             return state;
