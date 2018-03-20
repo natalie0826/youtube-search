@@ -3,7 +3,8 @@
         "browser": true,
         "es6": true,
         "commonjs": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
     "extends": [
         "airbnb",
@@ -11,7 +12,8 @@
         "plugin:react/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:import/errors",
-        "plugin:import/warnings"
+        "plugin:import/warnings",
+        "plugin:jest/recommended"
     ],
     "parser": "babel-eslint",
     "parserOptions": {
@@ -24,7 +26,8 @@
     "plugins": [
         "react",
         "jsx-a11y",
-        "import"
+        "import",
+        "jest"
     ],
     "root": true,
     "rules": {
@@ -54,6 +57,7 @@
             "error",
             "after"
         ],
+        "import/extensions": 0,
         "import/no-unresolved": "off",
         "indent": [
             "warn",
@@ -62,6 +66,11 @@
                 "SwitchCase": 1
             }
         ],
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error",
         "jsx-a11y/rule-name": 0,
         "jsx-a11y/href-no-hash": "off",
         "jsx-a11y/img-uses-alt": 0,
@@ -165,6 +174,17 @@
         ],
         "import/prefer-default-export": "off",
         "radix": "error",
+        "react/jsx-indent": [1, 4],
+        "react/jsx-indent-props": 0,
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions":
+                [
+                    ".js", ".jsx"
+                ]
+            }
+        ],
         "require-await": "error",
         "semi": "error",
         "semi-spacing": "error",
