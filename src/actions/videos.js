@@ -1,20 +1,13 @@
 import { api } from '../tools/ajax-tool';
-import { BASE_URL, API, ACTION_TYPES } from '../constants/app';
+import { generateUrl } from '../tools/url-tool';
+import { ACTION_TYPES } from '../constants/app';
 
-export const fetchVideos = (searchQuery = '', videoType = 'any') => {
+export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) => {
     return dispatch => {
         dispatch(fetchVideosStart());
 
-        const url =
-            `${BASE_URL}?part=snippet&` +
-            'maxResults=8&' +
-            'type=video&' +
-            `videoType=${videoType}&` +
-            `key=${API}&` +
-            `q=${searchQuery}`;
-
         return api
-            .get(url)
+            .get(generateUrl(searchQuery, videoType, perPage))
             .then(response => {
                 if (response.data.items.length) {
                     dispatch(fetchVideosSuccess(response.data));
@@ -22,25 +15,16 @@ export const fetchVideos = (searchQuery = '', videoType = 'any') => {
                     dispatch(fetchVideosFailure('no data'));
                 }
             })
-            .catch(error => dispatch(fetchVideosFailure(error)));
+            .catch(error => dispatch(fetchVideosFailure(error.message)));
     };
 };
 
-export const loadMoreVideos = (pageToken, searchQuery, videoType) => {
+export const loadMoreVideos = (searchQuery, videoType, perPage, pageToken) => {
     return dispatch => {
-        dispatch(fetchVideosStart());
-
-        const url =
-            `${BASE_URL}?part=snippet&` +
-            'maxResults=8&' +
-            'type=video&' +
-            `videoType=${videoType}&` +
-            `key=${API}&` +
-            `pageToken=${pageToken}&` +
-            `q=${searchQuery}`;
+        dispatch(loadVideosStart());
 
         return api
-            .get(url)
+            .get(generateUrl(searchQuery, videoType, perPage, pageToken))
             .then(response => {
                 if (response.data.items.length) {
                     dispatch(loadVideosSuccess(response.data));
@@ -48,9 +32,17 @@ export const loadMoreVideos = (pageToken, searchQuery, videoType) => {
                     dispatch(loadVideosFailure('no data'));
                 }
             })
-            .catch(error => dispatch(loadVideosFailure(error)));
-    }
-}
+            .catch(error => dispatch(loadVideosFailure(error.message)));
+    };
+};
+
+export const updateSearchQueryAndFetch = (searchQuery, videoType, perPage) => {
+    return dispatch => {
+        dispatch(updateSearchQuery(searchQuery));
+
+        return dispatch(fetchVideos(searchQuery, videoType, perPage));
+    };
+};
 
 export const fetchVideosStart = () => ({
     type: ACTION_TYPES.FETCH_VIDEOS_START,
@@ -71,6 +63,10 @@ export const fetchVideosFailure = error => ({
     payload: {
         error,
     },
+});
+
+export const loadVideosStart = () => ({
+    type: ACTION_TYPES.LOAD_VIDEOS_START,
 });
 
 export const loadVideosSuccess = data => ({
@@ -95,9 +91,10 @@ export const setActiveVideo = id => ({
     },
 });
 
-export const setVideoType = videoType => ({
-    type: ACTION_TYPES.SET_VIDEO_TYPE,
+export const updateSettings = (perPage, videoType) => ({
+    type: ACTION_TYPES.UPDATE_SETTINGS,
     payload: {
+        perPage,
         videoType,
     }
 });
@@ -108,10 +105,3 @@ export const updateSearchQuery = searchQuery => ({
         searchQuery,
     }
 });
-
-export const setPerPageValue = perPage => ({
-    type: ACTION_TYPES.SET_PER_PAGE_VALUE,
-    payload: {
-        perPage,
-    }
-})
