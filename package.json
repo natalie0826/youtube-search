@@ -21,7 +21,9 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject"
+        "coverage": "jest --coverage",
+        "eject": "react-scripts eject",
+        "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
     },
     "devDependencies": {
         "babel-eslint": "^7.2.3",
@@ -30,6 +32,7 @@
         "enzyme-to-json": "^3.3.1",
         "eslint": "^4.19.0",
         "eslint-config-airbnb": "^14.1.0",
+        "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-import": "^2.7.0",
         "eslint-plugin-jest": "^21.15.0",
         "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -37,6 +40,7 @@
         "eslint-watch": "^3.1.2",
         "jest": "^20.0.4",
         "jest-enzyme": "^4.1.1",
+        "prettier": "1.11.1",
         "react-addons-test-utils": "^15.6.2",
         "redux-devtools-extension": "^2.13.2",
         "redux-mock-store": "^1.5.1",
@@ -44,7 +48,7 @@
         "sinon": "^4.4.5"
     },
     "jest": {
-        "collectCoverageFrom" : [
+        "collectCoverageFrom": [
             "src/**/*.{js,jsx}",
             "!<rootDir>/node_modules/",
             "!<rootDir>/path/to/dir/"
@@ -57,8 +61,8 @@
                 "statements": 90
             }
         },
-        "coverageReporters": ["text"],
-        "snapshotSerializers": ["my-serializer-module"],
-        "setupTestFrameworkScriptFile": "src/setupTests.js"
+        "coverageReporters": [
+            "text"
+        ]
     }
 }
