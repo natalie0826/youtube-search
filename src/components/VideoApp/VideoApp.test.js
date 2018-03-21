@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { configureStore } from '../configureStore';
 import { VideoApp } from './VideoApp';
 
 describe('VideoApp stateful component', () => {
@@ -112,9 +111,9 @@ describe('VideoApp stateful component', () => {
         setActiveVideo: jest.fn()
     };
 
-    const component = shallow(<VideoApp {...videoProps} store={configureStore} />);
+    const component = shallow(<VideoApp {...videoProps} />);
 
     it('renders VideoApp component', () => {
-        expect(component.length).toHaveLength(1);
+        expect(component).toHaveLength(1);
     });
 });
