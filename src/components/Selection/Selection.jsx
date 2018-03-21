@@ -19,8 +19,13 @@ export const Selection = (props) => {
 
     return (
         <div className="selection">
-            <span htmlFor="selection">{props.title}</span>
-            <select value={props.active} onChange={props.onItemChanged} onBlur={props.onItemChanged}>
+            <span htmlFor="selection" className="selection-title">{props.title}</span>
+            <select
+                value={props.active}
+                className="select"
+                onChange={props.onItemChanged}
+                onBlur={props.onItemChanged}
+            >
                 {props.items.map(item => (
                     <option value={item} key={item}>
                         {item}

@@ -10,6 +10,6 @@ describe('Loading functional component', () => {
     const component = mount(<Loading {...loadingProps} />);
 
     it('renders Loading component', () => {
-        expect(component.length).toBe(1);
+        expect(component).toHaveLength(1);
     });
 });

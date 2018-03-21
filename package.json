@@ -15,7 +15,6 @@
         "react-spinners": "^0.2.6",
         "react-tap-event-plugin": "^3.0.2",
         "redux": "^3.7.2",
-        "redux-devtools-extension": "^2.13.2",
         "redux-thunk": "^2.2.0"
     },
     "scripts": {
@@ -39,8 +38,27 @@
         "jest": "^20.0.4",
         "jest-enzyme": "^4.1.1",
         "react-addons-test-utils": "^15.6.2",
+        "redux-devtools-extension": "^2.13.2",
         "redux-mock-store": "^1.5.1",
         "shallow": "^1.0.0",
         "sinon": "^4.4.5"
+    },
+    "jest": {
+        "collectCoverageFrom" : [
+            "src/**/*.{js,jsx}",
+            "!<rootDir>/node_modules/",
+            "!<rootDir>/path/to/dir/"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 90,
+                "functions": 90,
+                "lines": 90,
+                "statements": 90
+            }
+        },
+        "coverageReporters": ["text"],
+        "snapshotSerializers": ["my-serializer-module"],
+        "setupTestFrameworkScriptFile": "src/setupTests.js"
     }
 }

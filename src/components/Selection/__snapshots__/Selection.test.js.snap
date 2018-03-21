@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Selection functional component matches its snapshot 1`] = `
+<div
+  className="selection"
+>
+  <span
+    className="selection-title"
+    htmlFor="selection"
+  >
+    title
+  </span>
+  <select
+    className="select"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="one"
+  >
+    <option
+      key="one"
+      value="one"
+    >
+      one
+    </option>
+    <option
+      key="two"
+      value="two"
+    >
+      two
+    </option>
+    <option
+      key="three"
+      value="three"
+    >
+      three
+    </option>
+    <option
+      key="four"
+      value="four"
+    >
+      four
+    </option>
+    <option
+      key="five"
+      value="five"
+    >
+      five
+    </option>
+  </select>
+</div>
+`;

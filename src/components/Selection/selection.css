@@ -4,13 +4,13 @@
     margin: 20px 0;
 }
   
-.selection span {
+.selection-title {
     font-size: 20px;
     margin-bottom: 10px;
     color: #555;
 }
 
-.selection select {
+.select {
     width: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -26,7 +26,7 @@
     outline: none;
 }
 
-.selection select:focus {
+.select:focus {
     -moz-box-shadow: 0 0 8px #88D5E9;
     -webkit-box-shadow: 0 0 8px #88D5E9;
     box-shadow: 0 0 8px #88D5E9;

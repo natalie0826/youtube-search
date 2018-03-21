@@ -59,6 +59,12 @@
         ],
         "import/extensions": 0,
         "import/no-unresolved": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
         "indent": [
             "warn",
             4,
