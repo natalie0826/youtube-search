@@ -1,9 +1,8 @@
 import React from 'react';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { configureStore } from '../../../configureStore';
-import { Navigation } from './Navigation';
+import Navigation from './Navigation';
 import { Selection } from '../Selection';
 import { Search } from '../Search';
 
@@ -32,7 +31,7 @@ describe('Navigation functional component', () => {
     it('calls updateSettings method after clicking the button', () => {
         const component = shallow(<Navigation {...navigationProps} />);
         const updateSettings = sinon.spy();
-        component.setProps({updateSettings: updateSettings});
+        component.setProps({ updateSettings: updateSettings });
         expect(updateSettings.called).toBeFalsy();
         component.find('.save').simulate('click');
         expect(updateSettings.called).toBeTruthy();

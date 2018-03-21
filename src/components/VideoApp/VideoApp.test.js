@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { configureStore } from '../configureStore';
-import VideoApp from './VideoApp';
+import { VideoApp } from './VideoApp';
 
 describe('VideoApp stateful component', () => {
     const videoProps = {

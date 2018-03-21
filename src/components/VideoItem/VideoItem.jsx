@@ -14,26 +14,26 @@ export const VideoItem = (props) => {
     };
 
     return (
-        <li className="video-item" onClick={props.watchVideo}>
+        <li className="video-item" onClick={props.watchVideo} role="presentation">
             <div className="thumbnail">
                 <div className="video-preview">
                     <img src={props.imgUrl} alt={props.title} />
-                    <div className="play-button"></div>
+                    <div className="play-button" />
                 </div>
                 <div className="video-description">
-                <h3>{props.title}</h3>
-                <section className="video-details">
-                    <div className="video-channel">
-                        <span className="title">Channel Title</span>
-                        <span>{props.channel}</span>
-                    </div>
-                    <div className="video-date">
-                        <span className="title">Date</span>
-                        <span>{getDate(props.date)}</span>
-                    </div>
-                </section>
+                    <h3>{props.title}</h3>
+                    <section className="video-details">
+                        <div className="video-channel">
+                            <span className="title">Channel Title</span>
+                            <span>{props.channel}</span>
+                        </div>
+                        <div className="video-date">
+                            <span className="title">Date</span>
+                            <span>{getDate(props.date)}</span>
+                        </div>
+                    </section>
                 </div>
             </div>
         </li>
     );
-}
+};

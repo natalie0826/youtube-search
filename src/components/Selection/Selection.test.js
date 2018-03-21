@@ -1,6 +1,7 @@
 import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
+
 import { Selection } from './Selection';
 
 describe('Selection functional component', () => {
@@ -13,7 +14,7 @@ describe('Selection functional component', () => {
     const component = shallow(<Selection {...selectionProps} />);
 
     it('has select tag', () => {
-        expect(component.find('select').length).toHaveLength(1);
+        expect(component.find('select').length).toBe(1);
     });
 
     it('expects selectedValue to be equal to the props value', () => {
