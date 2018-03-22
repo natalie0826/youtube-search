@@ -4,7 +4,12 @@ import { DebounceInput } from 'react-debounce-input';
 
 import { Selection } from '../Selection/Selection';
 import { PageInfo } from '../PageInfo/PageInfo';
-import { MIN_QUERY_LENGTH, MILLISECONDS_TO_WAIT } from '../../constants/app';
+import {
+    MIN_QUERY_LENGTH,
+    MILLISECONDS_TO_WAIT,
+    VIDEO_TYPES,
+    PER_PAGE_VALUES
+} from '../../constants/app';
 import './Navigation.css';
 
 export default class Navigation extends React.Component {
@@ -13,10 +18,8 @@ export default class Navigation extends React.Component {
             perPage: PropTypes.number,
             totalCount: PropTypes.number
         }).isRequired,
-        videoTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
         activeType: PropTypes.string.isRequired,
         searchQuery: PropTypes.string.isRequired,
-        perPageValues: PropTypes.arrayOf(PropTypes.number).isRequired,
         perPage: PropTypes.number.isRequired,
         fetchVideos: PropTypes.func.isRequired,
         updateSearchQueryAndFetch: PropTypes.func.isRequired,
@@ -46,9 +49,7 @@ export default class Navigation extends React.Component {
     render() {
         const {
             pageInfo,
-            videoTypes,
             searchQuery,
-            perPageValues,
             updateSearchQueryAndFetch,
             updateSettings
         } = this.props;
@@ -75,13 +76,13 @@ export default class Navigation extends React.Component {
                     <div className="title-separator">Settings</div>
                     <Selection
                         title="Video type"
-                        items={videoTypes}
+                        items={VIDEO_TYPES}
                         active={activeType}
                         onItemChanged={this.setVideoType}
                     />
                     <Selection
                         title="Per page"
-                        items={perPageValues}
+                        items={PER_PAGE_VALUES}
                         active={perPage}
                         onItemChanged={this.setPerPageValue}
                     />

@@ -8,10 +8,8 @@ import Navigation from '../components/Navigation/Navigation';
 
 const mapStateToProps = state => ({
     pageInfo: state.videos.pageInfo,
-    videoTypes: state.search.videoTypes,
     activeType: state.search.activeType,
     searchQuery: state.search.searchQuery,
-    perPageValues: state.search.perPageValues,
     perPage: state.search.perPage,
 });
 

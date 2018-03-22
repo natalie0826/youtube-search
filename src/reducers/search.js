@@ -2,9 +2,7 @@ import { ACTION_TYPES, VIDEO_TYPES, PER_PAGE_VALUES } from '../constants/app';
 
 const initialState = {
     searchQuery: '',
-    videoTypes: VIDEO_TYPES,
     activeType: VIDEO_TYPES[0],
-    perPageValues: PER_PAGE_VALUES,
     perPage: PER_PAGE_VALUES[0]
 };
 
