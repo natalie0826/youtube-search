@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 
 import {
-    updateSettings,
-    updateSearchQueryAndFetch } from '../actions/videos';
-import Navigation from '../components/Navigation/Navigation';
+    setPerPageValue,
+    setVideoType,
+    updateSearchQueryAndFetch
+} from '../actions/videos';
+import { Navigation } from '../components/Navigation/Navigation';
 
 const mapStateToProps = state => ({
     pageInfo: state.videos.pageInfo,
@@ -13,7 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateSettings: (perPage, activeType) => dispatch(updateSettings(perPage, activeType)),
+    setPerPageValue: perPage => dispatch(setPerPageValue(perPage)),
+    setVideoType: videoType => dispatch(setVideoType(videoType)),
     updateSearchQueryAndFetch: (searchQuery, videoType, perPage) => dispatch(updateSearchQueryAndFetch(searchQuery, videoType, perPage)),
 });
 

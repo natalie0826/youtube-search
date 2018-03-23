@@ -91,13 +91,19 @@ export const setActiveVideo = id => ({
     },
 });
 
-export const updateSettings = (perPage, videoType) => ({
-    type: ACTION_TYPES.UPDATE_SETTINGS,
+export const setPerPageValue = (perPage) => ({
+    type: ACTION_TYPES.SET_PER_PAGE_VALUE,
     payload: {
         perPage,
-        videoType,
     }
 });
+
+export const setVideoType = (videoType) => ({
+    type: ACTION_TYPES.SET_VIDEO_TYPE,
+    payload: {
+        videoType,
+    }
+})
 
 export const updateSearchQuery = searchQuery => ({
     type: ACTION_TYPES.UPDATE_SEARCH_QUERY,

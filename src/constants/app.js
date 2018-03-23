@@ -16,5 +16,6 @@ export const ACTION_TYPES = keyMirror({
     LOAD_VIDEOS_FAILURE: null,
     SET_ACTIVE_VIDEO: null,
     UPDATE_SEARCH_QUERY: null,
-    UPDATE_SETTINGS: null
+    SET_VIDEO_TYPE: null,
+    SET_PER_PAGE_VALUE: null
 });
