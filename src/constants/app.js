@@ -6,6 +6,8 @@ export const MIN_QUERY_LENGTH = 3;
 export const MILLISECONDS_TO_WAIT = 500;
 export const VIDEO_TYPES = ['any', 'episode', 'movie'];
 export const PER_PAGE_VALUES = [16, 24, 32, 40];
+export const DELAY_IN_MINUTES = 10;
+export const SCROLL_STEP_IN_PX = 100;
 
 export const ACTION_TYPES = keyMirror({
     FETCH_VIDEOS_START: null,

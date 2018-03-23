@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
+import {
+    DELAY_IN_MINUTES,
+    SCROLL_STEP_IN_PX
+} from '../../constants/app';
 import { withInfiniteScroll } from '../InfiniteScroll/withInfiniteScroll';
 import { VideoList } from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
-
 import { VideoWatch } from '../VideoWatch/VideoWatch';
 
 export default class VideoApp extends React.Component {
@@ -19,12 +21,32 @@ export default class VideoApp extends React.Component {
         loadMoreVideos: PropTypes.func.isRequired
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            interval: 0
+        };
+    }
+
     componentDidMount() {
         this.props.fetchVideos();
     }
 
+    scrollStep = () => {
+        if (window.pageYOffset === 0) {
+            clearInterval(this.state.interval);
+        }
+        window.scroll(0, window.pageYOffset - SCROLL_STEP_IN_PX);
+    }
+
+    scrollToTop = () => {
+        const interval = setInterval(this.scrollStep.bind(this), DELAY_IN_MINUTES);
+        this.setState({ interval: interval });
+    }
+
     watchVideo = video => {
         this.props.setActiveVideo(video.id.videoId);
+        this.scrollToTop();
     };
 
     render() {
