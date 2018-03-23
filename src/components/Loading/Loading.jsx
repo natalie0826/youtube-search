@@ -4,14 +4,19 @@ import { BeatLoader } from 'react-spinners';
 
 import './Loading.css';
 
-export const Loading = (props) => {
+export const Loading = ({ loading, color}) => {
     Loading.propTypes = {
-        loading: PropTypes.bool.isRequired
+        loading: PropTypes.bool.isRequired,
+        color: PropTypes.string
+    };
+
+    Loading.defaultProps = {
+        color: '#000000'
     };
 
     return (
         <div className="loading">
-            <BeatLoader color={'#4B99AD'} loading={props.loading} />
+            <BeatLoader color={color} loading={loading} />
         </div>
     );
 };
