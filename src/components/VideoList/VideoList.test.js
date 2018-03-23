@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { VideoList } from './VideoList';
+import { VideoItem } from '../VideoItem/VideoItem';
 
 describe('VideoList stateless component', () => {
     let videoListProps;
@@ -9,6 +10,7 @@ describe('VideoList stateless component', () => {
 
     beforeEach(() => {
         videoListProps = {
+            watchVideo: jest.fn(),
             list: [
                 {
                     'kind': 'youtube#searchResult',
@@ -84,5 +86,9 @@ describe('VideoList stateless component', () => {
 
     it('matches its snapshot', () => {
         expect(component).toMatchSnapshot();
+    });
+
+    it('renders VideoItems from props', () => {
+        expect(component.find(VideoItem)).toHaveLength(videoListProps.list.length);
     });
 });
