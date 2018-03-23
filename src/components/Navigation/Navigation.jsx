@@ -21,7 +21,6 @@ export default class Navigation extends React.Component {
         activeType: PropTypes.string.isRequired,
         searchQuery: PropTypes.string.isRequired,
         perPage: PropTypes.number.isRequired,
-        fetchVideos: PropTypes.func.isRequired,
         updateSearchQueryAndFetch: PropTypes.func.isRequired,
         updateSettings: PropTypes.func.isRequired,
     };
@@ -32,10 +31,6 @@ export default class Navigation extends React.Component {
             perPage: this.props.perPage,
             activeType: this.props.activeType
         };
-    }
-
-    componentDidMount() {
-        this.props.fetchVideos();
     }
 
     setVideoType = e => {

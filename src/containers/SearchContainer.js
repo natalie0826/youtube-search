@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import {
-    fetchVideos,
     updateSettings,
     updateSearchQueryAndFetch } from '../actions/videos';
 import Navigation from '../components/Navigation/Navigation';
@@ -14,7 +13,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchVideos: () => dispatch(fetchVideos()),
     updateSettings: (perPage, activeType) => dispatch(updateSettings(perPage, activeType)),
     updateSearchQueryAndFetch: (searchQuery, videoType, perPage) => dispatch(updateSearchQueryAndFetch(searchQuery, videoType, perPage)),
 });

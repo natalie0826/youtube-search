@@ -1,11 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
-import { VideoApp } from './VideoApp';
+import VideoApp from './VideoApp';
 
 describe('VideoApp stateful component', () => {
     const videoProps = {
         isFetching: true,
+        isLoading: false,
         video: {
             'kind': 'youtube#searchResult',
             'etag': '\'RmznBCICv9YtgWaaa_nWDIH1_GM/sCMvxYeCLrAk98CyeVbbHF2JWPY\'',
@@ -106,14 +107,24 @@ describe('VideoApp stateful component', () => {
                     'liveBroadcastContent': 'none'
                 }
             }],
-        videoTypes: ['one', 'two', 'three'],
+        activeVideoId: 'asdadas',
         fetchVideos: jest.fn(),
-        setActiveVideo: jest.fn()
+        setActiveVideo: jest.fn(),
+        loadMoreVideos: jest.fn()
     };
 
-    const component = shallow(<VideoApp {...videoProps} />);
+    let component;
+
+    beforeEach(() => {
+        component = shallow(<VideoApp {...videoProps} />);
+    });
 
     it('renders VideoApp component', () => {
         expect(component).toHaveLength(1);
+    });
+
+    it('calls props.fetchVideos when mounted', () => {
+        component = mount(<VideoApp {...videoProps} />);
+        expect(videoProps.fetchVideos).toHaveBeenCalled();
     });
 });

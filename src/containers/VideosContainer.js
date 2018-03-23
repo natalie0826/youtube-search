@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 
 import {
     loadMoreVideos,
-    setActiveVideo } from '../actions/videos';
-import { VideoApp } from '../components/VideoApp/VideoApp';
+    setActiveVideo,
+    fetchVideos
+} from '../actions/videos';
+import VideoApp from '../components/VideoApp/VideoApp';
 
 const getState = (dispatch) => new Promise((resolve) => {
     return dispatch((dispatch, getState) => resolve(getState()));
@@ -26,6 +28,7 @@ const mapDispatchToProps = dispatch => ({
                 state.videos.pageInfo.nextPageToken));
         });
     },
+    fetchVideos: () => dispatch(fetchVideos()),
     setActiveVideo: (id) => dispatch(setActiveVideo(id))
 });
 

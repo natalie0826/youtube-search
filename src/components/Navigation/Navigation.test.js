@@ -53,9 +53,4 @@ describe('Navigation functional component', () => {
         component.find('.save').simulate('click');
         expect(updateSettings.called).toBeTruthy();
     });
-
-    it('calls props.fetchVideos when mounted', () => {
-        component = mount(<Navigation {...navigationProps} />);
-        expect(navigationProps.fetchVideos).toHaveBeenCalled();
-    });
 });

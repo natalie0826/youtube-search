@@ -37,9 +37,9 @@ exports[`Navigation functional component matches its snapshot 1`] = `
       active="one"
       items={
         Array [
-          "one",
-          "two",
-          "three",
+          "any",
+          "episode",
+          "movie",
         ]
       }
       onItemChanged={[Function]}
@@ -49,10 +49,10 @@ exports[`Navigation functional component matches its snapshot 1`] = `
       active={12}
       items={
         Array [
-          8,
-          12,
           16,
-          20,
+          24,
+          32,
+          40,
         ]
       }
       onItemChanged={[Function]}
