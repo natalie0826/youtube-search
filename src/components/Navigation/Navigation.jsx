@@ -12,8 +12,8 @@ import {
 } from '../../constants/app';
 import './Navigation.css';
 
-export default class Navigation extends React.Component {
-    static propTypes = {
+export const Navigation = (props) => {
+    Navigation.propTypes = {
         pageInfo: PropTypes.shape({
             perPage: PropTypes.number,
             totalCount: PropTypes.number
@@ -21,76 +21,66 @@ export default class Navigation extends React.Component {
         activeType: PropTypes.string.isRequired,
         searchQuery: PropTypes.string.isRequired,
         perPage: PropTypes.number.isRequired,
-        updateSearchQueryAndFetch: PropTypes.func.isRequired,
-        updateSettings: PropTypes.func.isRequired,
+        setVideoType: PropTypes.func.isRequired,
+        setPerPageValue: PropTypes.func.isRequired,
+        updateSearchQueryAndFetch: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            perPage: this.props.perPage,
-            activeType: this.props.activeType
-        };
-    }
+    const setVideoType = e => {
+        props.setVideoType(e.target.value);
+    };
 
-    setVideoType = e => {
-        this.setState({ activeType: e.target.value });
-    }
+    const setPerPageValue = e => {
+        props.setPerPageValue(e.target.value);
+    };
 
-    setPerPageValue = e => {
-        this.setState({ perPage: Number(e.target.value) });
-    }
+    const updateSearchAndFetch = e => {
+        updateSearchQueryAndFetch(e.target.value, props.activeType, props.perPage);
+    };
 
-    render() {
-        const {
-            pageInfo,
-            searchQuery,
-            updateSearchQueryAndFetch,
-            updateSettings
-        } = this.props;
+    const {
+        pageInfo,
+        searchQuery,
+        updateSearchQueryAndFetch,
+        activeType,
+        perPage
+    } = props;
 
-        const {
-            perPage,
-            activeType
-        } = this.state;
-
-        return (
-            <section className="navigation">
-                <div className="search-block">
-                    <div className="title-separator">Start searching</div>
-                    <DebounceInput
-                        placeholder="Search..."
-                        className="search"
-                        minLength={MIN_QUERY_LENGTH}
-                        value={searchQuery}
-                        debounceTimeout={MILLISECONDS_TO_WAIT}
-                        onChange={e => updateSearchQueryAndFetch(e.target.value, this.props.activeType, this.props.perPage)}
-                    />
+    return (
+        <section className="navigation">
+            <div className="search-block">
+                <div className="title-separator">Start searching</div>
+                <DebounceInput
+                    placeholder="Search..."
+                    className="search"
+                    minLength={MIN_QUERY_LENGTH}
+                    value={searchQuery}
+                    debounceTimeout={MILLISECONDS_TO_WAIT}
+                    onChange={updateSearchAndFetch}
+                />
+            </div>
+            <div className="settings-block">
+                <div className="title-separator">Settings</div>
+                <Selection
+                    title="Video type"
+                    items={VIDEO_TYPES}
+                    active={activeType}
+                    onItemChanged={setVideoType}
+                />
+                <Selection
+                    title="Per page"
+                    items={PER_PAGE_VALUES}
+                    active={perPage}
+                    onItemChanged={setPerPageValue}
+                />
+            </div>
+            <div className="page-info-block">
+                <div className="title-separator">Page info</div>
+                <div className="info">
+                    <PageInfo subtitle="Per page" value={pageInfo.perPage} />
+                    <PageInfo subtitle="Total count" value={pageInfo.totalCount} />
                 </div>
-                <div className="settings-block">
-                    <div className="title-separator">Settings</div>
-                    <Selection
-                        title="Video type"
-                        items={VIDEO_TYPES}
-                        active={activeType}
-                        onItemChanged={this.setVideoType}
-                    />
-                    <Selection
-                        title="Per page"
-                        items={PER_PAGE_VALUES}
-                        active={perPage}
-                        onItemChanged={this.setPerPageValue}
-                    />
-                    <button className="save" onClick={() => updateSettings(perPage, activeType)}>Update settings</button>
-                </div>
-                <div className="page-info-block">
-                    <div className="title-separator">Page info</div>
-                    <div className="info">
-                        <PageInfo subtitle="Per page" value={pageInfo.perPage} />
-                        <PageInfo subtitle="Total count" value={pageInfo.totalCount} />
-                    </div>
-                </div>
-            </section>
-        );
-    }
+            </div>
+        </section>
+    );
 }

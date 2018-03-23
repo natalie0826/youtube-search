@@ -5,7 +5,7 @@ import { DebounceInput } from 'react-debounce-input';
 
 import { Selection } from '../Selection/Selection';
 import { PageInfo } from '../PageInfo/PageInfo';
-import Navigation from './Navigation';
+import { Navigation } from './Navigation';
 
 describe('Navigation functional component', () => {
     const navigationProps = {
