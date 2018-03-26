@@ -5,5 +5,5 @@ import search from './search';
 
 export const reducers = combineReducers({
     page,
-    search
+    search,
 });
