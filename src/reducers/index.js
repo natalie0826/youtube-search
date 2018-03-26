@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
-import videos from './videos';
+import page from './page';
 import search from './search';
 
 export const reducers = combineReducers({
-    videos,
+    page,
     search
 });

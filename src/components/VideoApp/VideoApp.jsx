@@ -9,13 +9,14 @@ import { withInfiniteScroll } from '../InfiniteScroll/withInfiniteScroll';
 import { VideoList } from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
 import { VideoWatch } from '../VideoWatch/VideoWatch';
+import Videos from '../../records/videos';
 
 export default class VideoApp extends React.Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         isLoading: PropTypes.bool.isRequired,
         activeVideoId: PropTypes.string.isRequired,
-        videos: PropTypes.arrayOf(PropTypes.object).isRequired,
+        videos: PropTypes.instanceOf(Videos).isRequired,
         fetchVideos: PropTypes.func.isRequired,
         setActiveVideo: PropTypes.func.isRequired,
         loadMoreVideos: PropTypes.func.isRequired
@@ -45,7 +46,7 @@ export default class VideoApp extends React.Component {
     }
 
     watchVideo = video => {
-        this.props.setActiveVideo(video.id.videoId);
+        this.props.setActiveVideo(video.get('id'));
         this.scrollToTop();
     };
 
@@ -60,7 +61,7 @@ export default class VideoApp extends React.Component {
 
         const VideosWithInfinite = withInfiniteScroll(VideoList);
 
-        const activeVideo = videos.find(video => video.id.videoId === activeVideoId);
+        const activeVideo = videos.find(video => video.get('id') === activeVideoId);
 
         return (
             <section className="video-app">
@@ -68,7 +69,7 @@ export default class VideoApp extends React.Component {
                     <Loading loading={isFetching} color="#4B99AD" />
                 ) : (
                     <div className="videos">
-                        <VideoWatch title={activeVideo.snippet.title} id={activeVideoId} />
+                        <VideoWatch title={activeVideo.get('title')} id={activeVideoId} />
 
                         <VideosWithInfinite
                             list={videos}

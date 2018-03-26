@@ -14,10 +14,7 @@ import './Navigation.css';
 
 export const Navigation = (props) => {
     Navigation.propTypes = {
-        pageInfo: PropTypes.shape({
-            perPage: PropTypes.number,
-            totalCount: PropTypes.number
-        }).isRequired,
+        totalCount: PropTypes.number.isRequired,
         activeType: PropTypes.string.isRequired,
         searchQuery: PropTypes.string.isRequired,
         perPage: PropTypes.number.isRequired,
@@ -39,7 +36,7 @@ export const Navigation = (props) => {
     };
 
     const {
-        pageInfo,
+        totalCount,
         searchQuery,
         updateSearchQueryAndFetch,
         activeType,
@@ -77,8 +74,7 @@ export const Navigation = (props) => {
             <div className="page-info-block">
                 <div className="title-separator">Page info</div>
                 <div className="info">
-                    <PageInfo subtitle="Per page" value={pageInfo.perPage} />
-                    <PageInfo subtitle="Total count" value={pageInfo.totalCount} />
+                    <PageInfo subtitle="Total count" value={totalCount} />
                 </div>
             </div>
         </section>

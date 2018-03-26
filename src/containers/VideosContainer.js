@@ -12,10 +12,10 @@ const getState = (dispatch) => new Promise((resolve) => {
 });
 
 const mapStateToProps = state => ({
-    videos: state.videos.items,
-    activeVideoId: state.videos.activeVideoId,
-    isFetching: state.videos.isFetching,
-    isLoading: state.videos.isLoading
+    videos: state.getIn(['page', 'items']),
+    activeVideoId: state.getIn(['page', 'activeVideoId']),
+    isFetching: state.getIn(['page', 'isFetching']),
+    isLoading: state.getIn(['page', 'isLoading'])
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,8 +24,8 @@ const mapDispatchToProps = dispatch => ({
             dispatch(loadMoreVideos(
                 state.search.searchQuery,
                 state.search.activeType,
-                state.videos.pageInfo.perPage,
-                state.videos.pageInfo.nextPageToken));
+                state.page.pageInfo.perPage,
+                state.page.pageInfo.nextPageToken));
         });
     },
     fetchVideos: () => dispatch(fetchVideos()),

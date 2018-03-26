@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Videos from '../../records/videos';
+
 export const withInfiniteScroll = (Component) =>
     class WithInfniniteScroll extends React.Component {
         static propTypes = {
             onPaginatedSearch: PropTypes.func.isRequired,
-            list: PropTypes.arrayOf(PropTypes.object).isRequired,
+            list: PropTypes.oneOfType([
+                PropTypes.instanceOf(Videos),
+                PropTypes.array
+            ]).isRequired,
             isLoading: PropTypes.bool.isRequired
         };
 

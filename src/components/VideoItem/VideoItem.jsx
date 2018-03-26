@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getDate } from '../../tools/date-tool';
 import './VideoItem.css';
 
 export const VideoItem = (props) => {
@@ -29,7 +28,7 @@ export const VideoItem = (props) => {
                         </div>
                         <div className="video-date">
                             <span className="title">Date</span>
-                            <span>{getDate(props.date)}</span>
+                            <span>{props.date}</span>
                         </div>
                     </section>
                 </div>
