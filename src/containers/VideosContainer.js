@@ -7,10 +7,6 @@ import {
 } from '../actions/videos';
 import VideoApp from '../components/VideoApp/VideoApp';
 
-const getState = (dispatch) => new Promise((resolve) => {
-    return dispatch((dispatch, getState) => resolve(getState()));
-});
-
 const mapStateToProps = state => ({
     videos: state.getIn(['page', 'items']),
     activeVideoId: state.getIn(['page', 'activeVideoId']),
@@ -19,15 +15,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    loadMoreVideos: () => {
-        return getState(dispatch).then(state => {
-            dispatch(loadMoreVideos(
-                state.search.searchQuery,
-                state.search.activeType,
-                state.page.pageInfo.perPage,
-                state.page.pageInfo.nextPageToken));
-        });
-    },
+    loadMoreVideos: () => dispatch(loadMoreVideos()),
     fetchVideos: () => dispatch(fetchVideos()),
     setActiveVideo: (id) => dispatch(setActiveVideo(id))
 });
