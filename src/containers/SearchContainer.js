@@ -10,8 +10,8 @@ import { Navigation } from '../components/Navigation/Navigation';
 const mapStateToProps = state => ({
     totalCount: state.getIn(['page', 'totalCount']),
     activeType: state.getIn(['search', 'activeType']),
-    searchQuery: state.get(['search', 'searchQuery']),
-    perPage: state.get(['search', 'perPage']),
+    searchQuery: state.getIn(['search', 'searchQuery']),
+    perPage: state.getIn(['search', 'perPage']),
 });
 
 const mapDispatchToProps = dispatch => ({
