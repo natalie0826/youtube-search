@@ -50,12 +50,17 @@ export default class VideoApp extends React.Component {
         this.scrollToTop();
     };
 
+    loadMoreVideos = () => {
+        if (this.props.videos.size) {
+            this.props.loadMoreVideos();
+        }
+    }
+
     render() {
         const {
             isFetching,
             videos,
             activeVideoId,
-            loadMoreVideos,
             isLoading
         } = this.props;
 
@@ -74,7 +79,7 @@ export default class VideoApp extends React.Component {
                         <VideosWithInfinite
                             list={videos}
                             watchVideo={video => this.watchVideo(video)}
-                            onPaginatedSearch={loadMoreVideos}
+                            onPaginatedSearch={this.loadMoreVideos}
                             isLoading={isLoading}
                         />
                         {isLoading && <Loading loading={isLoading} color="#4B99AD" />}
