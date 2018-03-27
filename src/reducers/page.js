@@ -1,9 +1,19 @@
+import { List } from 'immutable'
+
 import { ACTION_TYPES } from '../constants/app';
 import { getDate } from '../tools/date-tool';
 import Page from '../records/page';
 import Video from '../records/video';
 
-const initialState = new Page();
+const initialState = new Page({
+    isFetching: true,
+    isLoading: false,
+    totalCount: 0,
+    nextPageToken: '',
+    activeVideoId: '',
+    items: List(Video),
+    error: null,
+});
 
 const getFormatVideos = newVideos => {
     return newVideos.map(video => {

@@ -1,10 +1,10 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 
-const Video = Immutable.Record({
+const Video = Record({
     id: null,
-    title: '',
-    channelTitle: '',
-    imageUrl:'',
+    title: null,
+    channelTitle: null,
+    imageUrl:null,
     publishedAt: null
 });
 

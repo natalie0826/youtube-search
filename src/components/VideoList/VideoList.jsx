@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { List } from 'immutable';
 
-import Videos from '../../records/videos';
+import Video from '../../records/video';
 import { VideoItem } from '../VideoItem/VideoItem';
 import './VideoList.css';
 
 export const VideoList = ({ list, watchVideo }) => {
     VideoList.propTypes = {
-        list: PropTypes.instanceOf(Videos).isRequired,
+        list: PropTypes.instanceOf(List(Video)).isRequired,
         watchVideo: PropTypes.func.isRequired,
     };
 

@@ -1,7 +1,11 @@
-import { ACTION_TYPES } from '../constants/app';
+import { ACTION_TYPES, VIDEO_TYPES, PER_PAGE_VALUES } from '../constants/app';
 import Search from '../records/search';
 
-const initialState = new Search();
+const initialState = new Search({
+    searchQuery: '',
+    activeType: VIDEO_TYPES[0],
+    perPage: PER_PAGE_VALUES[0]
+});
 
 export default (state = initialState, action) => {
     switch (action.type) {

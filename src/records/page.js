@@ -1,14 +1,12 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 
-import Videos from './videos';
-
-const Page = Immutable.Record({
-    isFetching: true,
-    isLoading: false,
+const Page = Record({
+    isFetching: null,
+    isLoading: null,
     totalCount: null,
-    nextPageToken: '',
-    activeVideoId: '',
-    items: new Videos(),
+    nextPageToken: null,
+    activeVideoId: null,
+    items: null,
     error: null,
 });
 

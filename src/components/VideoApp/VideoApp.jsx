@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { List } from 'immutable';
 
 import {
     DELAY_IN_MINUTES,
@@ -9,14 +10,14 @@ import { withInfiniteScroll } from '../InfiniteScroll/withInfiniteScroll';
 import { VideoList } from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
 import { VideoWatch } from '../VideoWatch/VideoWatch';
-import Videos from '../../records/videos';
+import Video from '../../records/video';
 
 export default class VideoApp extends React.Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         isLoading: PropTypes.bool.isRequired,
         activeVideoId: PropTypes.string.isRequired,
-        videos: PropTypes.instanceOf(Videos).isRequired,
+        videos: PropTypes.instanceOf(PropTypes.array).isRequired,
         fetchVideos: PropTypes.func.isRequired,
         setActiveVideo: PropTypes.func.isRequired,
         loadMoreVideos: PropTypes.func.isRequired
@@ -66,7 +67,11 @@ export default class VideoApp extends React.Component {
 
         const VideosWithInfinite = withInfiniteScroll(VideoList);
 
-        const activeVideo = videos.find(video => video.get('id') === activeVideoId);
+        let activeVideo;
+        
+        if (!isFetching) {
+            activeVideo = videos.find(video => video.get('id') === activeVideoId);
+        }
 
         return (
             <section className="video-app">

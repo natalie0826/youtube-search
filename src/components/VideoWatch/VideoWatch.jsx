@@ -13,7 +13,7 @@ export const VideoWatch = ({ id, title }) => {
 
     return (
         <div className="video-player">
-            <iframe title={title} className="frame-video" src={url} />
+            <iframe title={title} className="frame-video" data-anchor="active-video" src={url} />
         </div>
     );
 };

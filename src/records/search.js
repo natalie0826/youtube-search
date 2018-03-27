@@ -1,11 +1,9 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 
-import { VIDEO_TYPES, PER_PAGE_VALUES } from '../constants/app';
-
-const Search = Immutable.Record({
-    searchQuery: '',
-    activeType: VIDEO_TYPES[0],
-    perPage: PER_PAGE_VALUES[0]
+const Search = Record({
+    searchQuery: null,
+    activeType: null,
+    perPage: null
 });
 
 export default Search;

@@ -2,11 +2,11 @@ import { api } from '../tools/ajax-tool';
 import { generateUrl } from '../tools/url-tool';
 import { ACTION_TYPES } from '../constants/app';
 
-export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) => {
-    return dispatch => {
+export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) =>
+    dispatch => {
         dispatch(fetchVideosStart());
 
-        return api
+        api
             .get(generateUrl(searchQuery, videoType, perPage))
             .then(response => {
                 if (response.data.items.length) {
@@ -17,18 +17,21 @@ export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) =
             })
             .catch(error => dispatch(fetchVideosFailure(error.message)));
     };
-};
 
-export const loadMoreVideos = () => {
-    return (dispatch, getState) => {
+export const loadMoreVideos = () =>
+    (dispatch, getState) => {
         dispatch(loadVideosStart());
 
-        return api
+        const stateSearch = getState().get('search');
+        const statePage = getState().get('page');
+
+        api
             .get(generateUrl(
-                getState().getIn(['search', 'searchQuery']),
-                getState().getIn(['search', 'activeType']),
-                getState().getIn(['search', 'perPage']),
-                getState().getIn(['page', 'pageToken'])))
+                stateSearch.get('searchQuery'),
+                stateSearch.get('activeType'),
+                stateSearch.get('perPage'),
+                statePage.get('pageToken'))
+            )
             .then(response => {
                 if (response.data.items.length) {
                     dispatch(loadVideosSuccess(response.data));
@@ -38,15 +41,13 @@ export const loadMoreVideos = () => {
             })
             .catch(error => dispatch(loadVideosFailure(error.message)));
     };
-};
 
-export const updateSearchQueryAndFetch = (searchQuery, videoType, perPage) => {
-    return dispatch => {
+export const updateSearchQueryAndFetch = (searchQuery, videoType, perPage) => 
+    dispatch => {
         dispatch(updateSearchQuery(searchQuery));
 
-        return dispatch(fetchVideos(searchQuery, videoType, perPage));
+        dispatch(fetchVideos(searchQuery, videoType, perPage));
     };
-};
 
 export const fetchVideosStart = () => ({
     type: ACTION_TYPES.FETCH_VIDEOS_START,
