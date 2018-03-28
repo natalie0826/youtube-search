@@ -10,14 +10,13 @@ import { withInfiniteScroll } from '../InfiniteScroll/withInfiniteScroll';
 import { VideoList } from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
 import { VideoWatch } from '../VideoWatch/VideoWatch';
-import Video from '../../records/video';
 
 export default class VideoApp extends React.Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         isLoading: PropTypes.bool.isRequired,
         activeVideoId: PropTypes.string.isRequired,
-        videos: PropTypes.instanceOf(PropTypes.array).isRequired,
+        videos: PropTypes.instanceOf(List).isRequired,
         fetchVideos: PropTypes.func.isRequired,
         setActiveVideo: PropTypes.func.isRequired,
         loadMoreVideos: PropTypes.func.isRequired
