@@ -6,8 +6,10 @@ export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) =
     dispatch => {
         dispatch(fetchVideosStart());
 
+        const url = generateUrl(searchQuery, videoType, perPage);
+
         api
-            .get(generateUrl(searchQuery, videoType, perPage))
+            .get(url)
             .then(response => {
                 if (response.data.items.length) {
                     dispatch(fetchVideosSuccess(response.data));
@@ -24,14 +26,14 @@ export const loadMoreVideos = () =>
 
         const stateSearch = getState().get('search');
         const statePage = getState().get('page');
+        const url = generateUrl(
+            stateSearch.get('searchQuery'),
+            stateSearch.get('activeType'),
+            stateSearch.get('perPage'),
+            statePage.get('nextPageToken'));
 
         api
-            .get(generateUrl(
-                stateSearch.get('searchQuery'),
-                stateSearch.get('activeType'),
-                stateSearch.get('perPage'),
-                statePage.get('pageToken'))
-            )
+            .get(url)
             .then(response => {
                 if (response.data.items.length) {
                     dispatch(loadVideosSuccess(response.data));
