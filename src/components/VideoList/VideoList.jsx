@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 
-import { VideoItem } from '../VideoItem/VideoItem';
+import { withInfiniteScroll } from '../InfiniteScroll/withInfiniteScroll';
+import VideoItem from '../VideoItem/VideoItem';
 import './VideoList.css';
 
-export const VideoList = ({ list, watchVideo }) => {
+const VideoList = ({ list, watchVideo }) => {
     VideoList.propTypes = {
         list: PropTypes.instanceOf(List).isRequired,
         watchVideo: PropTypes.func.isRequired,
@@ -19,7 +20,8 @@ export const VideoList = ({ list, watchVideo }) => {
                     return (
                         <VideoItem
                             key={video.get('id')}
-                            watchVideo={() => watchVideo(video)}
+                            id={video.get('id')}
+                            watchVideo={watchVideo}
                             title={video.get('title')}
                             imgUrl={video.get('imageUrl')}
                             channel={video.get('channelTitle')}
@@ -31,3 +33,5 @@ export const VideoList = ({ list, watchVideo }) => {
         </section>
     );
 };
+
+export default withInfiniteScroll(VideoList);

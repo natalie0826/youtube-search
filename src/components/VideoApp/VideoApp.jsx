@@ -6,10 +6,12 @@ import {
     DELAY_IN_MINUTES,
     SCROLL_STEP_IN_PX
 } from '../../constants/app';
-import { withInfiniteScroll } from '../InfiniteScroll/withInfiniteScroll';
-import { VideoList } from '../VideoList/VideoList';
+
+import VideoList from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
 import { VideoWatch } from '../VideoWatch/VideoWatch';
+
+
 
 export default class VideoApp extends React.Component {
     static propTypes = {
@@ -45,8 +47,8 @@ export default class VideoApp extends React.Component {
         this.setState({ interval: interval });
     }
 
-    watchVideo = video => {
-        this.props.setActiveVideo(video.get('id'));
+    watchVideo = id => {
+        this.props.setActiveVideo(id);
         this.scrollToTop();
     };
 
@@ -64,8 +66,6 @@ export default class VideoApp extends React.Component {
             isLoading
         } = this.props;
 
-        const VideosWithInfinite = withInfiniteScroll(VideoList);
-
         let activeVideo;
         
         if (!isFetching) {
@@ -80,9 +80,9 @@ export default class VideoApp extends React.Component {
                     <div className="videos">
                         <VideoWatch title={activeVideo.get('title')} id={activeVideoId} />
 
-                        <VideosWithInfinite
+                        <VideoList
                             list={videos}
-                            watchVideo={video => this.watchVideo(video)}
+                            watchVideo={this.watchVideo}
                             onPaginatedSearch={this.loadMoreVideos}
                             isLoading={isLoading}
                         />
