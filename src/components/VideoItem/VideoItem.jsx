@@ -13,7 +13,7 @@ export const VideoItem = (props) => {
     };
 
     return (
-        <li className="video-item" onClick={props.watchVideo} role="presentation" data-scroll-name="active-video">
+        <li className="video-item" onClick={props.watchVideo} role="presentation">
             <div className="thumbnail">
                 <div className="video-preview">
                     <img src={props.imgUrl} alt={props.title} />
