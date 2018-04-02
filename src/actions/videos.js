@@ -1,12 +1,15 @@
 import { api } from '../tools/ajax-tool';
-import { generateUrl } from '../tools/url-tool';
+import { generateVideoUrl } from '../tools/url-video-tool';
+import { generateChannelUrl } from '../tools/url-channel-tool';
 import { ACTION_TYPES } from '../constants/app';
 
 export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) =>
-    dispatch => {
+    (dispatch, getState) => {
         dispatch(fetchVideosStart());
 
-        const url = generateUrl(searchQuery, videoType, perPage);
+        const channelId = getState().get('search').get('channelId');
+
+        const url = generateVideoUrl(searchQuery, videoType, perPage, channelId);
 
         api
             .get(url)
@@ -26,7 +29,7 @@ export const loadMoreVideos = () =>
 
         const stateSearch = getState().get('search');
         const statePage = getState().get('page');
-        const url = generateUrl(
+        const url = generateVideoUrl(
             stateSearch.get('searchQuery'),
             stateSearch.get('activeType'),
             stateSearch.get('perPage'),
@@ -50,6 +53,24 @@ export const updateSearchQueryAndFetch = (searchQuery, videoType, perPage) =>
 
         dispatch(fetchVideos(searchQuery, videoType, perPage));
     };
+
+export const fetchChannelInfo = (channelId) =>
+    dispatch => {
+        dispatch(fetchChannelInfoStart());
+
+        const url = generateChannelUrl(channelId);
+
+        api
+            .get(url)
+            .then(response => {
+                if(response.data.items.length) {
+                    dispatch(fetchChannelInfoSuccess(response.data.items[0]));
+                } else {
+                    dispatch(fetchChannelInfoFailure('no data'));
+                }
+            })
+            .catch(error => dispatch(fetchChannelInfoFailure(error.message)));
+    }
 
 export const fetchVideosStart = () => ({
     type: ACTION_TYPES.FETCH_VIDEOS_START,
@@ -84,8 +105,26 @@ export const loadVideosSuccess = data => ({
     },
 });
 
-export const loadVideosFailure = error => ({
+export const loadVideosFailure = (error) => ({
     type: ACTION_TYPES.LOAD_VIDEOS_FAILURE,
+    payload: {
+        error,
+    }
+});
+
+export const fetchChannelInfoStart = () => ({
+    type: ACTION_TYPES.FETCH_CHANNEL_INFO_START,
+});
+
+export const fetchChannelInfoSuccess = (channelInfo) => ({
+    type: ACTION_TYPES.FETCH_CHANNEL_INFO_SUCCESS,
+    payload: {
+        channelInfo
+    }
+});
+
+export const fetchChannelInfoFailure = (error) => ({
+    type: ACTION_TYPES.FETCH_CHANNEL_INFO_FAILURE,
     payload: {
         error,
     }
@@ -110,7 +149,14 @@ export const setVideoType = (videoType) => ({
     payload: {
         videoType,
     }
-})
+});
+
+export const setChannelId = (channelId) => ({
+    type: ACTION_TYPES.SET_CHANNEL_ID,
+    payload: {
+        channelId,
+    }
+});
 
 export const updateSearchQuery = searchQuery => ({
     type: ACTION_TYPES.UPDATE_SEARCH_QUERY,

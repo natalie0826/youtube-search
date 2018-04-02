@@ -23,9 +23,10 @@ const getFormatVideos = newVideos => {
             id: video.id.videoId,
             title: videoInfo.title,
             channelTitle: videoInfo.channelTitle,
+            channelId: videoInfo.channelId,
             imageUrl: videoInfo.thumbnails.high.url,
             publishedAt: getDate(videoInfo.publishedAt)
-        }); 
+        });
     })
 };
 

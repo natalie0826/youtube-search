@@ -3,6 +3,7 @@ import Search from '../records/search';
 
 const initialState = new Search({
     searchQuery: '',
+    channelId: '',
     activeType: VIDEO_TYPES[0],
     perPage: PER_PAGE_VALUES[0]
 });
@@ -17,6 +18,9 @@ export default (state = initialState, action) => {
         
         case ACTION_TYPES.SET_PER_PAGE_VALUE:
             return state.set('perPage', action.payload.perPage);
+
+        case ACTION_TYPES.SET_CHANNEL_ID:
+            return state.set('channelId', action.payload.channelId);
             
         default:
             return state;
