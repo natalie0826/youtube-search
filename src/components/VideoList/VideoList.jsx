@@ -24,7 +24,8 @@ const VideoList = ({ list, watchVideo }) => {
                             watchVideo={watchVideo}
                             title={video.get('title')}
                             imgUrl={video.get('imageUrl')}
-                            channel={video.get('channelTitle')}
+                            channelTitle={video.get('channelTitle')}
+                            channelId={video.get('channelId')}
                             date={video.get('publishedAt')}
                         />
                     );

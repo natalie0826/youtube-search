@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './VideoItem.css';
 
@@ -8,7 +9,8 @@ export default class VideoItem extends React.Component {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         imgUrl: PropTypes.string.isRequired,
-        channel: PropTypes.string.isRequired,
+        channelTitle: PropTypes.string.isRequired,
+        channelId: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         watchVideo: PropTypes.func.isRequired
     };
@@ -21,7 +23,8 @@ export default class VideoItem extends React.Component {
         const {
             title,
             imgUrl,
-            channel,
+            channelTitle,
+            channelId,
             date
         } = this.props;
 
@@ -33,11 +36,13 @@ export default class VideoItem extends React.Component {
                         <div className="play-button" />
                     </div>
                     <div className="video-description">
-                        <h3>{title}</h3>
+                        <h3 className="video-title">{title}</h3>
                         <section className="video-details">
                             <div className="video-channel">
                                 <span className="title">Channel Title</span>
-                                <span>{channel}</span>
+                                <Link to={`/channel/${channelId}`} style={{ textDecoration: 'none' }}>
+                                    <span className="channel-title">{channelTitle}</span>
+                                </Link>
                             </div>
                             <div className="video-date">
                                 <span className="title">Date</span>
