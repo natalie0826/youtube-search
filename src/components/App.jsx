@@ -5,20 +5,25 @@ import { VideosContainer } from '../containers/VideosContainer';
 import { SearchContainer } from '../containers/SearchContainer';
 import { ChannelInfoContainer } from '../containers/ChannelInfoContainer'; 
 
-export const App = ({ location }) => {
+export const App = ({ match }) => {
     App.propTypes = {
-        location: PropTypes.objectOf(PropTypes.string).isRequired
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                id: PropTypes.node,
+            }).isRequired,
+        }).isRequired,
     };
 
     return (
+        
         <section className="main">
             <SearchContainer />
-            {location.pathname !== '/' ?
+            {match.params.id ?
                 <div>
-                    <ChannelInfoContainer channelId={location.pathname} />
-                    <VideosContainer channelId={location.pathname} />
+                    <ChannelInfoContainer channelId={match.params.id} />
+                    <VideosContainer channelId={match.params.id} />
                 </div>
-                : <VideosContainer />
+                :   <VideosContainer />
             }
         </section>
     );

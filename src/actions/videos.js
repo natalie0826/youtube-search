@@ -8,8 +8,9 @@ export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) =
         dispatch(fetchVideosStart());
 
         const channelId = getState().get('search').get('channelId');
+        const pageToken = null;
 
-        const url = generateVideoUrl(searchQuery, videoType, perPage, channelId);
+        const url = generateVideoUrl(searchQuery, videoType, perPage, pageToken, channelId);
 
         api
             .get(url)

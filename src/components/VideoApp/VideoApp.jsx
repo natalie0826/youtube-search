@@ -11,12 +11,11 @@ import VideoList from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
 import { VideoWatch } from '../VideoWatch/VideoWatch';
 
-
-
 export default class VideoApp extends React.Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         isLoading: PropTypes.bool.isRequired,
+        channelId: PropTypes.string,
         activeVideoId: PropTypes.string.isRequired,
         videos: PropTypes.instanceOf(List).isRequired,
         fetchVideos: PropTypes.func.isRequired,
@@ -24,27 +23,29 @@ export default class VideoApp extends React.Component {
         loadMoreVideos: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            interval: 0
-        };
-    }
+    static defaultProps = {
+        channelId: ''
+    };
 
     componentDidMount() {
         this.props.fetchVideos();
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.channelId !== this.props.channelId) {
+            this.props.fetchVideos();
+        }
+    }
+
     scrollStep = () => {
         if (window.pageYOffset === 0) {
-            clearInterval(this.state.interval);
+            clearInterval(this.interval);
         }
         window.scroll(0, window.pageYOffset - SCROLL_STEP_IN_PX);
     }
 
     scrollToTop = () => {
-        const interval = setInterval(this.scrollStep.bind(this), DELAY_IN_MINUTES);
-        this.setState({ interval: interval });
+        this.interval = setInterval(this.scrollStep.bind(this), DELAY_IN_MINUTES);
     }
 
     watchVideo = id => {
