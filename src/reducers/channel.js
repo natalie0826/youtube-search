@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
             return state.merge({
                 title: action.payload.channelInfo.snippet.title,
                 description: action.payload.channelInfo.snippet.description,
-                imageUrl: action.payload.thumbnails.channelInfo.high.url,
+                imageUrl: action.payload.channelInfo.snippet.thumbnails.high.url,
                 isChannelInfoFetching: false
             });
         

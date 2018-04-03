@@ -10,6 +10,9 @@ import {
     VIDEO_TYPES,
     PER_PAGE_VALUES
 } from '../../constants/app';
+
+import { ChannelInfoContainer } from '../../containers/ChannelInfoContainer'; 
+
 import './Navigation.css';
 
 export const Navigation = (props) => {
@@ -18,10 +21,24 @@ export const Navigation = (props) => {
         activeType: PropTypes.string.isRequired,
         searchQuery: PropTypes.string.isRequired,
         perPage: PropTypes.number.isRequired,
+        channelId: PropTypes.string,
         setVideoType: PropTypes.func.isRequired,
         setPerPageValue: PropTypes.func.isRequired,
         updateSearchQueryAndFetch: PropTypes.func.isRequired
     };
+
+    Navigation.defaultProps = {
+        channelId: ''
+    };
+
+    const {
+        totalCount,
+        searchQuery,
+        updateSearchQueryAndFetch,
+        activeType,
+        perPage,
+        channelId
+    } = props;
 
     const setVideoType = e => {
         props.setVideoType(e.target.value);
@@ -35,13 +52,9 @@ export const Navigation = (props) => {
         updateSearchQueryAndFetch(e.target.value, props.activeType, props.perPage);
     };
 
-    const {
-        totalCount,
-        searchQuery,
-        updateSearchQueryAndFetch,
-        activeType,
-        perPage
-    } = props;
+    const channelInfo = channelId
+        ? <ChannelInfoContainer channelId={channelId} />
+        : <p>Channel is not selected. <br /> You are searching videos through all the channels.</p>;
 
     return (
         <section className="navigation">
@@ -71,11 +84,15 @@ export const Navigation = (props) => {
                     onItemChanged={setPerPageValue}
                 />
             </div>
-            <div className="page-info-block">
+            <div className="settings-block">
                 <div className="title-separator">Page info</div>
                 <div className="info">
                     <PageInfo subtitle="Total count" value={totalCount} />
                 </div>
+            </div>
+            <div className="settings-block">
+                <div className="title-separator">Channel info</div>
+                {channelInfo}
             </div>
         </section>
     );

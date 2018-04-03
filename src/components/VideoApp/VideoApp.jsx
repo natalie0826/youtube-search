@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { List } from 'immutable';
 
 import {
@@ -11,11 +12,15 @@ import VideoList from '../VideoList/VideoList';
 import { Loading } from '../Loading/Loading';
 import { VideoWatch } from '../VideoWatch/VideoWatch';
 
+import './VideoApp.css';
+
 export default class VideoApp extends React.Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         isLoading: PropTypes.bool.isRequired,
+        error: PropTypes.string,
         channelId: PropTypes.string,
+        channelTitle: PropTypes.string,
         activeVideoId: PropTypes.string.isRequired,
         videos: PropTypes.instanceOf(List).isRequired,
         fetchVideos: PropTypes.func.isRequired,
@@ -24,7 +29,9 @@ export default class VideoApp extends React.Component {
     };
 
     static defaultProps = {
-        channelId: ''
+        error: '',
+        channelId: '',
+        channelTitle: ''
     };
 
     componentDidMount() {
@@ -61,10 +68,13 @@ export default class VideoApp extends React.Component {
 
     render() {
         const {
+            channelTitle,
+            channelId,
             isFetching,
             videos,
             activeVideoId,
-            isLoading
+            isLoading,
+            error
         } = this.props;
 
         let activeVideo;
@@ -73,23 +83,40 @@ export default class VideoApp extends React.Component {
             activeVideo = videos.find(video => video.get('id') === activeVideoId);
         }
 
+        if (isFetching) {
+            return <Loading loading={isFetching} color="#4B99AD" />
+        }
+
+        if (error) {
+            return (
+                <section className="video-app">
+                    <p className="error-message">
+                        {error}
+                    </p>
+                </section>
+            );
+        }
+
         return (
             <section className="video-app">
-                {isFetching ? (
-                    <Loading loading={isFetching} color="#4B99AD" />
-                ) : (
-                    <div className="videos">
-                        <VideoWatch title={activeVideo.get('title')} id={activeVideoId} />
+                <div className="videos">
+                    {channelId &&
+                        <div className="ch-settings-block">
+                            <div className="ch-title-separator">Searching on {channelTitle} </div>
+                            <Link to="/" className="link">Back to searching through all the videos</Link>
+                        </div>
+                    }
 
-                        <VideoList
-                            list={videos}
-                            watchVideo={this.watchVideo}
-                            onPaginatedSearch={this.loadMoreVideos}
-                            isLoading={isLoading}
-                        />
-                        {isLoading && <Loading loading={isLoading} color="#4B99AD" />}
-                    </div>
-                )}
+                    <VideoWatch title={activeVideo.get('title')} id={activeVideoId} />
+
+                    <VideoList
+                        list={videos}
+                        watchVideo={this.watchVideo}
+                        onPaginatedSearch={this.loadMoreVideos}
+                        isLoading={isLoading}
+                    />
+                    {isLoading && <Loading loading={isLoading} color="#4B99AD" />}
+                </div>
             </section>
         );
     }

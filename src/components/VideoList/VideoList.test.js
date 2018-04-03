@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { VideoList } from './VideoList';
-import { VideoItem } from '../VideoItem/VideoItem';
+import VideoList from './VideoList';
+import VideoItem from '../VideoItem/VideoItem';
 
 describe('VideoList stateless component', () => {
     let videoListProps;

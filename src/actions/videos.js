@@ -18,7 +18,7 @@ export const fetchVideos = (searchQuery = '', videoType = 'any', perPage = 16) =
                 if (response.data.items.length) {
                     dispatch(fetchVideosSuccess(response.data));
                 } else {
-                    dispatch(fetchVideosFailure('no data'));
+                    dispatch(fetchVideosFailure('There are no videos with such search query.'));
                 }
             })
             .catch(error => dispatch(fetchVideosFailure(error.message)));
@@ -42,7 +42,7 @@ export const loadMoreVideos = () =>
                 if (response.data.items.length) {
                     dispatch(loadVideosSuccess(response.data));
                 } else {
-                    dispatch(loadVideosFailure('no data'));
+                    dispatch(loadVideosFailure('There are no videos with such search query.'));
                 }
             })
             .catch(error => dispatch(loadVideosFailure(error.message)));
@@ -67,7 +67,7 @@ export const fetchChannelInfo = (channelId) =>
                 if(response.data.items.length) {
                     dispatch(fetchChannelInfoSuccess(response.data.items[0]));
                 } else {
-                    dispatch(fetchChannelInfoFailure('no data'));
+                    dispatch(fetchChannelInfoFailure('There are no videos with such search query.'));
                 }
             })
             .catch(error => dispatch(fetchChannelInfoFailure(error.message)));
@@ -77,7 +77,7 @@ export const fetchVideosStart = () => ({
     type: ACTION_TYPES.FETCH_VIDEOS_START,
 });
 
-export const fetchVideosSuccess = data => ({
+export const fetchVideosSuccess = (data) => ({
     type: ACTION_TYPES.FETCH_VIDEOS_SUCCESS,
     payload: {
         videos: data.items,
@@ -87,7 +87,7 @@ export const fetchVideosSuccess = data => ({
     },
 });
 
-export const fetchVideosFailure = error => ({
+export const fetchVideosFailure = (error) => ({
     type: ACTION_TYPES.FETCH_VIDEOS_FAILURE,
     payload: {
         error,
@@ -98,7 +98,7 @@ export const loadVideosStart = () => ({
     type: ACTION_TYPES.LOAD_VIDEOS_START,
 });
 
-export const loadVideosSuccess = data => ({
+export const loadVideosSuccess = (data) => ({
     type: ACTION_TYPES.LOAD_VIDEOS_SUCCESS,
     payload: {
         videos: data.items,
@@ -131,7 +131,7 @@ export const fetchChannelInfoFailure = (error) => ({
     }
 });
 
-export const setActiveVideo = id => ({
+export const setActiveVideo = (id) => ({
     type: ACTION_TYPES.SET_ACTIVE_VIDEO,
     payload: {
         id,
@@ -159,7 +159,7 @@ export const setChannelId = (channelId) => ({
     }
 });
 
-export const updateSearchQuery = searchQuery => ({
+export const updateSearchQuery = (searchQuery) => ({
     type: ACTION_TYPES.UPDATE_SEARCH_QUERY,
     payload: {
         searchQuery,

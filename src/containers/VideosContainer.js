@@ -11,7 +11,9 @@ const mapStateToProps = state => ({
     videos: state.getIn(['page', 'items']),
     activeVideoId: state.getIn(['page', 'activeVideoId']),
     isFetching: state.getIn(['page', 'isFetching']),
-    isLoading: state.getIn(['page', 'isLoading'])
+    isLoading: state.getIn(['page', 'isLoading']),
+    error: state.getIn(['page', 'error']),
+    channelTitle: state.getIn(['channel', 'title'])
 });
 
 const mapDispatchToProps = dispatch => ({
