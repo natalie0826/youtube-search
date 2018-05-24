@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation functional component matches its snapshot 1`] = `
+<section
+  className="navigation"
+>
+  <div
+    className="search-block"
+  >
+    <div
+      className="title-separator"
+    >
+      Start searching
+    </div>
+    <DebounceInput
+      className="search"
+      debounceTimeout={500}
+      element="input"
+      forceNotifyByEnter={true}
+      forceNotifyOnBlur={true}
+      minLength={3}
+      onChange={[Function]}
+      placeholder="Search..."
+      type="text"
+      value="smth"
+    />
+  </div>
+  <div
+    className="settings-block"
+  >
+    <div
+      className="title-separator"
+    >
+      Settings
+    </div>
+    <Component
+      active="one"
+      items={
+        Array [
+          "any",
+          "episode",
+          "movie",
+        ]
+      }
+      onItemChanged={[Function]}
+      title="Video type"
+    />
+    <Component
+      active={12}
+      items={
+        Array [
+          16,
+          24,
+          32,
+          40,
+        ]
+      }
+      onItemChanged={[Function]}
+      title="Per page"
+    />
+    <button
+      className="save"
+      onClick={[Function]}
+    >
+      Update settings
+    </button>
+  </div>
+  <div
+    className="page-info-block"
+  >
+    <div
+      className="title-separator"
+    >
+      Page info
+    </div>
+    <div
+      className="info"
+    >
+      <Component
+        subtitle="Per page"
+        value={10}
+      />
+      <Component
+        subtitle="Total count"
+        value={1000}
+      />
+    </div>
+  </div>
+</section>
+`;

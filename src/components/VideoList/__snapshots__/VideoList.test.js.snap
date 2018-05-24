@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoList stateless component matches its snapshot 1`] = `
+<section
+  className="video-list"
+>
+  <ul
+    className="videos"
+  >
+    <Component
+      channel="Marshmello"
+      date="2018-02-09T04:41:39.000Z"
+      imgUrl="https://i.ytimg.com/vi/CY8E6N5Nzec/hqdefault.jpg"
+      key="CY8E6N5Nzec"
+      title="Marshmello & Anne-Marie - FRIENDS (Lyric Video) *OFFICIAL FRIENDZONE ANTHEM*"
+      watchVideo={[Function]}
+    />
+    <Component
+      channel="Marvel Entertainment"
+      date="2017-11-29T13:26:24.000Z"
+      imgUrl="https://i.ytimg.com/vi/6ZfuNTqbHE8/hqdefault.jpg"
+      key="6ZfuNTqbHE8"
+      title="Marvel Studios' Avengers: Infinity War Official Trailer"
+      watchVideo={[Function]}
+    />
+  </ul>
+</section>
+`;
